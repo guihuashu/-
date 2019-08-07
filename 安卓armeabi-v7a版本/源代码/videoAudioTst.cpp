@@ -6,7 +6,7 @@
 
 void rtmp_audio_video()
 {	//注册所有的编解码器, 封装器, 网络协议
-
+#if 0
     CUR;
     const char *outUrl = "rtmp://hdlcontrol.com/live/stream";
     MediaEncode *mediaEncode;
@@ -58,7 +58,6 @@ void rtmp_audio_video()
             CUR;
         }
 		//av_usleep(1000 * 20);
-
 	}
-
+#endif
 }

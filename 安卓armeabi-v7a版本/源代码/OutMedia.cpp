@@ -1,24 +1,26 @@
 #include "OutMedia.h"
 
-OutMedia::OutMedia()
+OutMedia::OutMedia(string outUrl, string streamFmt, MediaEncode *encode)
 {
 	cout << "------------------  OutMedia  ------------------" << endl;
-}
+    this->outUrl = outUrl;
+    this->streamFmt = streamFmt;
 
-bool OutMedia::init_outMedia(string outUrl, string streamFmt)
-{
-	this->outUrl = outUrl;
-	this->streamFmt = streamFmt;
+    if (0 > avformat_alloc_output_context2(&this->outFmtCtx, NULL, streamFmt.c_str(), outUrl.c_str())) {
+        cout << "ERR: avformat_alloc_output_context2" << endl;
+        exit(0);
+    }
 
-	if (0 > avformat_alloc_output_context2(&this->outFmtCtx, NULL, streamFmt.c_str(), outUrl.c_str())) {
-		cout << "ERR: avformat_alloc_output_context2" << endl;
-		return false;
-	}
+    // 推流延迟优化
+    outFmtCtx->max_interleave_delta = 0;			// 交叉存取的最大延迟
+    outFmtCtx->max_delay = 0;
 
-	// 推流延迟优化
-	outFmtCtx->max_interleave_delta = 0;			// 交叉存取的最大延迟
-	outFmtCtx->max_delay = 0;
-	return true;
+
+    /* 增加音频流和视频流 */
+    //addStream(mediaEncode.aEncodeCtx);    // 增加音频流
+    addStream(encode->_vEncodeCtx); // 增加视频流
+    dump_outMediaFmt();
+    write_headerInfo();
 }
 
 

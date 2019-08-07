@@ -2,6 +2,7 @@
 #define OUTMEDIA_H
 #include <iostream>
 #include <qtvideocap.h>
+#include <MediaEncode.h>
 
 extern "C" {
     #include <libavformat/avformat.h>
@@ -18,9 +19,9 @@ using namespace std;
 class OutMedia
 {
 public:
-	OutMedia();
+    OutMedia(string outUrl, string streamFmt, MediaEncode *encode);
 	~OutMedia();
-	bool init_outMedia(string outUrl, string streamFmt);
+    //bool init(string outUrl, string streamFmt, MediaEncode *encode);
 	bool addStream(AVCodecContext *encodeCtx);
 	void dump_outMediaFmt();
 	bool write_headerInfo();
@@ -51,7 +52,6 @@ private:
 	AVStream *vStream = NULL;		//  outFmtCtx->streams[i]
 	AVStream *aStream = NULL;		//  outFmtCtx->streams[i]
 	//AVStream *subtitleStream = NULL;		//  outFmtCtx->streams[i]
-
 };
 
 

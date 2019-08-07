@@ -55,11 +55,15 @@ DEPENDPATH += $$PWD/../../lib/armeabi-v7a
 
 HEADERS += \
     MediaEncode.h \
-    AudioRecord.h \
     qtvideocap.h \
     videoAudioTst.h \
     OutMedia.h \
-    ffmopr.h
+    ffmopr.h \
+    task.h \
+    pktlist.h \
+    control.h \
+    debug.h \
+    showvcap.h
 #    ffm_audioTst.h \
 #    OutMedia.h \
 #    videoAudioTst.h \
@@ -68,11 +72,14 @@ HEADERS += \
 SOURCES += \
     main.cpp \
     MediaEncode.cpp \
-    AudioRecord.cpp \
     qtvideocap.cpp \
     videoAudioTst.cpp \
     OutMedia.cpp \
-    ffmopr.cpp
+    ffmopr.cpp \
+    task.cpp \
+    pktlist.cpp \
+    control.cpp \
+    showvcap.cpp
 #    ffm_audioTst.cpp \
 #    ffm_videoTst.cpp \
 #    OutMedia.cpp \
@@ -90,5 +97,8 @@ contains(ANDROID_TARGET_ARCH,armeabi-v7a) {
         D:/VST___/src/AndroidPushStreamer/../../lib/armeabi-v7a/libavutil.so \
         D:/VST___/src/AndroidPushStreamer/../../lib/armeabi-v7a/libswresample.so \
         D:/VST___/src/AndroidPushStreamer/../../lib/armeabi-v7a/libswscale.so \
-        $$PWD/../../lib/armeabi-v7a/libfdk-aac.so
+        D:/VST___/src/AndroidPushStreamer/../../lib/armeabi-v7a/libfdk-aac.so
 }
+
+FORMS += \
+    showvcap.ui

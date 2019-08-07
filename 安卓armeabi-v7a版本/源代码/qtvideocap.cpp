@@ -1,13 +1,23 @@
 #include "qtvideocap.h"
 
 
-QtVideoCap::QtVideoCap(QObject *parent) : QObject(parent)
+QtVideoCap::QtVideoCap(QSize inSize, double fps, QVideoFrame::PixelFormat inFmt,
+                       QObject *parent)
 {
+    _inSize = inSize;
+    _fps = fps;
+    _inFmt = inFmt;
+
+    if (_inFmt != QVideoFrame::Format_NV21) {
+        qWarning()<<"cannot unsupport cap fmt";
+        exit(0);
+    }
+    init();
 }
+
 
 void QtVideoCap::init() // 必须在主线程中调用
 {
-    CUR;
     /* 初始化相机 */
     useCameraInfo = QCameraInfo::defaultCamera();   // 使用默认的相机
     _camera = new QCamera(useCameraInfo);
@@ -24,18 +34,6 @@ void QtVideoCap::init() // 必须在主线程中调用
 }
 
 
-//void QtVideoCap::newVideoFrame(const QVideoFrame &frame)
-//{
-//    AVFrame *yuv420p;
-//    int ret;
-
-//    if (!frame.isValid()) {
-//        qWarning()<<"newFrame isValid";
-//        return;
-//    }
-//    emit newYuv420p(*yuv420p);
-//}
-
 void QtVideoCap::stateChanged(QCamera::State state)
 {
     // 相机处于激活状态
@@ -47,10 +45,10 @@ void QtVideoCap::stateChanged(QCamera::State state)
     {
         QCameraViewfinderSettings set = list.at(i);
         // 取30fps 640x480
-        if (set.resolution() == inSize \
-           &&  (set.maximumFrameRate()>=fps) \
-           &&  (set.maximumFrameRate()<(fps +10))
-           &&  (set.pixelFormat() == Fmt))
+        if (set.resolution() == _inSize \
+           &&  (set.maximumFrameRate()>=_fps) \
+           &&  (set.maximumFrameRate()<(_fps +10)) \
+           &&  (set.pixelFormat() == _inFmt))
         {
             _camera->setViewfinderSettings(set);
             qWarning()<<set.minimumFrameRate();
