@@ -3,9 +3,9 @@
 
 
 
-QtAudioRecord::QtAudioRecord(aEncodeArgs &aArgs, QObject *parent)
-    : QObject(parent),
-      _frameDataSize(aArgs.frameDateSize)
+QtAudioRecord::QtAudioRecord(aEncodeArgs &aArgs,  QThread *parent):
+        QThread(parent),
+        _frameDataSize(aArgs.frameDateSize)
 {
     if (aArgs.sample_fmt !=  AV_SAMPLE_FMT_S16){    //< signed 16 bits
         qWarning()<<"ERR: audio record only support AV_SAMPLE_FMT_S16";
@@ -38,13 +38,20 @@ QtAudioRecord::QtAudioRecord(aEncodeArgs &aArgs, QObject *parent)
 
 void QtAudioRecord::run()
 {
-    AudioFrame *audioFrame= new AudioFrame();
-    audioFrame->data = new char[_frameDataSize];
-
     while(1) {
-        _frameDataSize = new
+        AudioFrame audioFrame;
+        audioFrame.dataSize = _frameDataSize;
+        audioFrame.data = new char[_frameDataSize];
+
+        qint64 len = 0;
+        qint64 size = (int)_frameDataSize;
+        while (len < size){
+            len += _audioInputIO->read(audioFrame.data + len, size - len);
+        }
+        emit newAudioFrame(audioFrame); // 帧中的数据需要手动释放
     }
 }
+
 
 
 

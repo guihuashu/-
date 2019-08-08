@@ -56,7 +56,6 @@ DEPENDPATH += $$PWD/../../lib/armeabi-v7a
 HEADERS += \
     MediaEncode.h \
     qtvideocap.h \
-    videoAudioTst.h \
     OutMedia.h \
     ffmopr.h \
     task.h \
@@ -64,18 +63,19 @@ HEADERS += \
     control.h \
     debug.h \
     showvcap.h \
+    qtaudiorecord.h
 
 SOURCES += \
     main.cpp \
     MediaEncode.cpp \
     qtvideocap.cpp \
-    videoAudioTst.cpp \
     OutMedia.cpp \
     ffmopr.cpp \
     task.cpp \
     pktlist.cpp \
     control.cpp \
     showvcap.cpp \
+    qtaudiorecord.cpp
 
 
 #FORMS += \

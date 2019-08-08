@@ -6,11 +6,10 @@
 #include <QAudioDeviceInfo>
 #include <QAudioInput>
 #include <QIODevice>
+#include <QThread>
 
 #include <MediaEncode.h>
 #include <debug.h>
-#include <QThread>
-#include <thread>
 
 
 typedef struct AudioFrame{
@@ -23,19 +22,17 @@ class QtAudioRecord : public QThread
     Q_OBJECT
 public:
     QtAudioRecord(aEncodeArgs &aArgs,
-                  QObject *parent = nullptr);
+                  QThread *parent = nullptr);
 
     virtual void run();
 signals:
-
-public slots:
+    void newAudioFrame(AudioFrame &audioFrame);
 
 private:
     QAudioFormat _audioFmt;
     QAudioInput *_audioInput;
     QIODevice *_audioInputIO;
     int _frameDataSize;
-    //AudioFrame _audioFrame;
 };
 
 #endif // QTAUDIORECORD_H

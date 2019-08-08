@@ -4,6 +4,7 @@
 #include <QVideoFrame>
 #include <QObject>
 #include <thread>
+#include <string>
 
 #include <qtvideocap.h>
 #include <pktlist.h>
@@ -11,9 +12,8 @@
 #include <task.h>
 #include <debug.h>
 #include <OutMedia.h>
-#include <string>
 #include <showvcap.h>
-
+#include <qtaudiorecord.h>
 
 
 class Control : QObject
@@ -22,13 +22,15 @@ class Control : QObject
 public:
     Control();
     bool init();
+    void set_paintVcapFlag(bool flag);  // 设置是否显示采集视频的标记
 
 public slots:
-    void newVideoFrame(const QVideoFrame &frame);
+    void newVideoFrame(const QVideoFrame &frame);   // 采集到视频帧
+    void newAudioFrame(AudioFrame &audioFrame);     // 采集到音频帧
     void pushStream();
-    void setVParam();
-    void setAParam();
-    void set_paintVcapFlag(bool flag);  // 设置是否显示采集视频的标记
+    void setVargs();
+    void setAargs();
+
 signals:
     void showVideoFrame(QVideoFrame frame);
 
@@ -46,7 +48,10 @@ public:
     QSize _outSize = _inSize;
     AVPixelFormat _inFmt = AV_PIX_FMT_NV21;
     AVPixelFormat _outFmt = AV_PIX_FMT_YUV420P;
-    QtVideoCap *_cap;
+    QtVideoCap *_vCap;
+
+    // 音频采集参数
+    QtAudioRecord *_aCap;
 
     // 音视频编码参数
     MediaEncode *_encode;

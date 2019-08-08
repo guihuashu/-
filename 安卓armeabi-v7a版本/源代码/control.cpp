@@ -18,7 +18,7 @@ Control::Control()
 }
 
 
-void Control::setVParam()
+void Control::setVargs()
 {
     // 视频编码器参数
     memset(&_vArgs, 0, sizeof(_vArgs));
@@ -37,7 +37,7 @@ void Control::setVParam()
     // 音频编码器参数
 }
 
-void Control::setAParam()
+void Control::setAargs()
 {
     memset(&_aArgs, 0, sizeof(_aArgs));
     _aArgs.sample_rate = 44100;                 // 音频采样率
@@ -46,7 +46,7 @@ void Control::setAParam()
     _aArgs.resample_fmt = AV_SAMPLE_FMT_FLTP;   // 重采样格式
     _aArgs.thread_count = 8;					// 用于编码的线程数
     _aArgs.bit_rate = 50 * 1024 * 8;            // 码率, 越大声音越清晰
-    _aArgs.frameDateSize = 4096
+    _aArgs.frameDateSize = 4096;
 }
 
 void Control::set_paintVcapFlag(bool flag)
@@ -64,15 +64,18 @@ bool Control::init()
         exit(0);
     }
 
-    setVParam();
-    setAParam();
+    setVargs();
+    setAargs();
     set_paintVcapFlag(false);
     _encode = new MediaEncode(_vArgs, _aArgs);
-    _cap = new QtVideoCap(_inSize, _vArgs.fps, QVideoFrame::Format_NV21);
+    _vCap = new QtVideoCap(_inSize, _vArgs.fps, QVideoFrame::Format_NV21);
+    _aCap = new QtAudioRecord(_aArgs);
+
     outMedia = new OutMedia(outUr, streamFmt, _encode);
 
-    // 连接视频采集信号
-    connect(_cap->_probe, SIGNAL(videoFrameProbed(const QVideoFrame &)), this, SLOT(newVideoFrame(const QVideoFrame &)));
+    // 连接视频.音频采集信号
+    //connect(_vCap->_probe, SIGNAL(videoFrameProbed(const QVideoFrame &)), this, SLOT(newVideoFrame(const QVideoFrame &)));
+    connect(_aCap, SIGNAL(newAudioFrame(AudioFrame &)), this, SLOT(newAudioFrame(AudioFrame &)));
 
     // 连接显示视频的槽函数
     if (_paintVcapFlag) {
@@ -98,6 +101,12 @@ void Control::newVideoFrame(const QVideoFrame &frame)
     //vTask->run();
     //emit showVideoFrame(curFrame);
 }
+
+void Control::newAudioFrame(AudioFrame &audioFrame)
+{
+    qInfo()<<audioFrame.dataSize;
+}
+
 
 static void workPushStream(PktList *aPktList, PktList *vPktList, OutMedia *outMedia)
 {
