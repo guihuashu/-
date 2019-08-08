@@ -1,0 +1,1270 @@
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  30   
+resolution:  176 x 144  
+------------------------
+Format_YV12             
+minimumFrameRate:  30   
+maximumFrameRate:  30   
+resolution:  176 x 144  
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  20   
+resolution:  176 x 144  
+------------------------
+Format_YV12             
+minimumFrameRate:  20   
+maximumFrameRate:  20   
+resolution:  176 x 144  
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  25   
+resolution:  176 x 144  
+------------------------
+Format_YV12             
+minimumFrameRate:  25   
+maximumFrameRate:  25   
+resolution:  176 x 144  
+------------------------
+Format_YV12             
+minimumFrameRate:  12   
+maximumFrameRate:  15   
+resolution:  176 x 144  
+------------------------
+Format_YV12             
+minimumFrameRate:  15   
+maximumFrameRate:  15   
+resolution:  176 x 144  
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  30   
+resolution:  176 x 144  
+------------------------
+Format_NV21             
+minimumFrameRate:  30   
+maximumFrameRate:  30   
+resolution:  176 x 144  
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  20   
+resolution:  176 x 144  
+------------------------
+Format_NV21             
+minimumFrameRate:  20   
+maximumFrameRate:  20   
+resolution:  176 x 144  
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  25   
+resolution:  176 x 144  
+------------------------
+Format_NV21             
+minimumFrameRate:  25   
+maximumFrameRate:  25   
+resolution:  176 x 144  
+------------------------
+Format_NV21             
+minimumFrameRate:  12   
+maximumFrameRate:  15   
+resolution:  176 x 144  
+------------------------
+Format_NV21             
+minimumFrameRate:  15   
+maximumFrameRate:  15   
+resolution:  176 x 144  
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  30   
+resolution:  208 x 144  
+------------------------
+Format_YV12             
+minimumFrameRate:  30   
+maximumFrameRate:  30   
+resolution:  208 x 144  
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  20   
+resolution:  208 x 144  
+------------------------
+Format_YV12             
+minimumFrameRate:  20   
+maximumFrameRate:  20   
+resolution:  208 x 144  
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  25   
+resolution:  208 x 144  
+------------------------
+Format_YV12             
+minimumFrameRate:  25   
+maximumFrameRate:  25   
+resolution:  208 x 144  
+------------------------
+Format_YV12             
+minimumFrameRate:  12   
+maximumFrameRate:  15   
+resolution:  208 x 144  
+------------------------
+Format_YV12             
+minimumFrameRate:  15   
+maximumFrameRate:  15   
+resolution:  208 x 144  
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  30   
+resolution:  208 x 144  
+------------------------
+Format_NV21             
+minimumFrameRate:  30   
+maximumFrameRate:  30   
+resolution:  208 x 144  
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  20   
+resolution:  208 x 144  
+------------------------
+Format_NV21             
+minimumFrameRate:  20   
+maximumFrameRate:  20   
+resolution:  208 x 144  
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  25   
+resolution:  208 x 144  
+------------------------
+Format_NV21             
+minimumFrameRate:  25   
+maximumFrameRate:  25   
+resolution:  208 x 144  
+------------------------
+Format_NV21             
+minimumFrameRate:  12   
+maximumFrameRate:  15   
+resolution:  208 x 144  
+------------------------
+Format_NV21             
+minimumFrameRate:  15   
+maximumFrameRate:  15   
+resolution:  208 x 144  
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  30   
+resolution:  320 x 240  
+------------------------
+Format_YV12             
+minimumFrameRate:  30   
+maximumFrameRate:  30   
+resolution:  320 x 240  
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  20   
+resolution:  320 x 240  
+------------------------
+Format_YV12             
+minimumFrameRate:  20   
+maximumFrameRate:  20   
+resolution:  320 x 240  
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  25   
+resolution:  320 x 240  
+------------------------
+Format_YV12             
+minimumFrameRate:  25   
+maximumFrameRate:  25   
+resolution:  320 x 240  
+------------------------
+Format_YV12             
+minimumFrameRate:  12   
+maximumFrameRate:  15   
+resolution:  320 x 240  
+------------------------
+Format_YV12             
+minimumFrameRate:  15   
+maximumFrameRate:  15   
+resolution:  320 x 240  
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  30   
+resolution:  320 x 240  
+------------------------
+Format_NV21             
+minimumFrameRate:  30   
+maximumFrameRate:  30   
+resolution:  320 x 240  
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  20   
+resolution:  320 x 240  
+------------------------
+Format_NV21             
+minimumFrameRate:  20   
+maximumFrameRate:  20   
+resolution:  320 x 240  
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  25   
+resolution:  320 x 240  
+------------------------
+Format_NV21             
+minimumFrameRate:  25   
+maximumFrameRate:  25   
+resolution:  320 x 240  
+------------------------
+Format_NV21             
+minimumFrameRate:  12   
+maximumFrameRate:  15   
+resolution:  320 x 240  
+------------------------
+Format_NV21             
+minimumFrameRate:  15   
+maximumFrameRate:  15   
+resolution:  320 x 240  
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  30   
+resolution:  352 x 288  
+------------------------
+Format_YV12             
+minimumFrameRate:  30   
+maximumFrameRate:  30   
+resolution:  352 x 288  
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  20   
+resolution:  352 x 288  
+------------------------
+Format_YV12             
+minimumFrameRate:  20   
+maximumFrameRate:  20   
+resolution:  352 x 288  
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  25   
+resolution:  352 x 288  
+------------------------
+Format_YV12             
+minimumFrameRate:  25   
+maximumFrameRate:  25   
+resolution:  352 x 288  
+------------------------
+Format_YV12             
+minimumFrameRate:  12   
+maximumFrameRate:  15   
+resolution:  352 x 288  
+------------------------
+Format_YV12             
+minimumFrameRate:  15   
+maximumFrameRate:  15   
+resolution:  352 x 288  
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  30   
+resolution:  352 x 288  
+------------------------
+Format_NV21             
+minimumFrameRate:  30   
+maximumFrameRate:  30   
+resolution:  352 x 288  
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  20   
+resolution:  352 x 288  
+------------------------
+Format_NV21             
+minimumFrameRate:  20   
+maximumFrameRate:  20   
+resolution:  352 x 288  
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  25   
+resolution:  352 x 288  
+------------------------
+Format_NV21             
+minimumFrameRate:  25   
+maximumFrameRate:  25   
+resolution:  352 x 288  
+------------------------
+Format_NV21             
+minimumFrameRate:  12   
+maximumFrameRate:  15   
+resolution:  352 x 288  
+------------------------
+Format_NV21             
+minimumFrameRate:  15   
+maximumFrameRate:  15   
+resolution:  352 x 288  
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  30   
+resolution:  400 x 400  
+------------------------
+Format_YV12             
+minimumFrameRate:  30   
+maximumFrameRate:  30   
+resolution:  400 x 400  
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  20   
+resolution:  400 x 400  
+------------------------
+Format_YV12             
+minimumFrameRate:  20   
+maximumFrameRate:  20   
+resolution:  400 x 400  
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  25   
+resolution:  400 x 400  
+------------------------
+Format_YV12             
+minimumFrameRate:  25   
+maximumFrameRate:  25   
+resolution:  400 x 400  
+------------------------
+Format_YV12             
+minimumFrameRate:  12   
+maximumFrameRate:  15   
+resolution:  400 x 400  
+------------------------
+Format_YV12             
+minimumFrameRate:  15   
+maximumFrameRate:  15   
+resolution:  400 x 400  
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  30   
+resolution:  400 x 400  
+------------------------
+Format_NV21             
+minimumFrameRate:  30   
+maximumFrameRate:  30   
+resolution:  400 x 400  
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  20   
+resolution:  400 x 400  
+------------------------
+Format_NV21             
+minimumFrameRate:  20   
+maximumFrameRate:  20   
+resolution:  400 x 400  
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  25   
+resolution:  400 x 400  
+------------------------
+Format_NV21             
+minimumFrameRate:  25   
+maximumFrameRate:  25   
+resolution:  400 x 400  
+------------------------
+Format_NV21             
+minimumFrameRate:  12   
+maximumFrameRate:  15   
+resolution:  400 x 400  
+------------------------
+Format_NV21             
+minimumFrameRate:  15   
+maximumFrameRate:  15   
+resolution:  400 x 400  
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  30   
+resolution:  544 x 408  
+------------------------
+Format_YV12             
+minimumFrameRate:  30   
+maximumFrameRate:  30   
+resolution:  544 x 408  
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  20   
+resolution:  544 x 408  
+------------------------
+Format_YV12             
+minimumFrameRate:  20   
+maximumFrameRate:  20   
+resolution:  544 x 408  
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  25   
+resolution:  544 x 408  
+------------------------
+Format_YV12             
+minimumFrameRate:  25   
+maximumFrameRate:  25   
+resolution:  544 x 408  
+------------------------
+Format_YV12             
+minimumFrameRate:  12   
+maximumFrameRate:  15   
+resolution:  544 x 408  
+------------------------
+Format_YV12             
+minimumFrameRate:  15   
+maximumFrameRate:  15   
+resolution:  544 x 408  
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  30   
+resolution:  544 x 408  
+------------------------
+Format_NV21             
+minimumFrameRate:  30   
+maximumFrameRate:  30   
+resolution:  544 x 408  
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  20   
+resolution:  544 x 408  
+------------------------
+Format_NV21             
+minimumFrameRate:  20   
+maximumFrameRate:  20   
+resolution:  544 x 408  
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  25   
+resolution:  544 x 408  
+------------------------
+Format_NV21             
+minimumFrameRate:  25   
+maximumFrameRate:  25   
+resolution:  544 x 408  
+------------------------
+Format_NV21             
+minimumFrameRate:  12   
+maximumFrameRate:  15   
+resolution:  544 x 408  
+------------------------
+Format_NV21             
+minimumFrameRate:  15   
+maximumFrameRate:  15   
+resolution:  544 x 408  
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  30   
+resolution:  736 x 414  
+------------------------
+Format_YV12             
+minimumFrameRate:  30   
+maximumFrameRate:  30   
+resolution:  736 x 414  
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  20   
+resolution:  736 x 414  
+------------------------
+Format_YV12             
+minimumFrameRate:  20   
+maximumFrameRate:  20   
+resolution:  736 x 414  
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  25   
+resolution:  736 x 414  
+------------------------
+Format_YV12             
+minimumFrameRate:  25   
+maximumFrameRate:  25   
+resolution:  736 x 414  
+------------------------
+Format_YV12             
+minimumFrameRate:  12   
+maximumFrameRate:  15   
+resolution:  736 x 414  
+------------------------
+Format_YV12             
+minimumFrameRate:  15   
+maximumFrameRate:  15   
+resolution:  736 x 414  
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  30   
+resolution:  736 x 414  
+------------------------
+Format_NV21             
+minimumFrameRate:  30   
+maximumFrameRate:  30   
+resolution:  736 x 414  
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  20   
+resolution:  736 x 414  
+------------------------
+Format_NV21             
+minimumFrameRate:  20   
+maximumFrameRate:  20   
+resolution:  736 x 414  
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  25   
+resolution:  736 x 414  
+------------------------
+Format_NV21             
+minimumFrameRate:  25   
+maximumFrameRate:  25   
+resolution:  736 x 414  
+------------------------
+Format_NV21             
+minimumFrameRate:  12   
+maximumFrameRate:  15   
+resolution:  736 x 414  
+------------------------
+Format_NV21             
+minimumFrameRate:  15   
+maximumFrameRate:  15   
+resolution:  736 x 414  
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  30   
+resolution:  640 x 480  
+------------------------
+Format_YV12             
+minimumFrameRate:  30   
+maximumFrameRate:  30   
+resolution:  640 x 480  
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  20   
+resolution:  640 x 480  
+------------------------
+Format_YV12             
+minimumFrameRate:  20   
+maximumFrameRate:  20   
+resolution:  640 x 480  
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  25   
+resolution:  640 x 480  
+------------------------
+Format_YV12             
+minimumFrameRate:  25   
+maximumFrameRate:  25   
+resolution:  640 x 480  
+------------------------
+Format_YV12             
+minimumFrameRate:  12   
+maximumFrameRate:  15   
+resolution:  640 x 480  
+------------------------
+Format_YV12             
+minimumFrameRate:  15   
+maximumFrameRate:  15   
+resolution:  640 x 480  
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  30   
+resolution:  640 x 480  
+------------------------
+Format_NV21             
+minimumFrameRate:  30   
+maximumFrameRate:  30   
+resolution:  640 x 480  
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  20   
+resolution:  640 x 480  
+------------------------
+Format_NV21             
+minimumFrameRate:  20   
+maximumFrameRate:  20   
+resolution:  640 x 480  
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  25   
+resolution:  640 x 480  
+------------------------
+Format_NV21             
+minimumFrameRate:  25   
+maximumFrameRate:  25   
+resolution:  640 x 480  
+------------------------
+Format_NV21             
+minimumFrameRate:  12   
+maximumFrameRate:  15   
+resolution:  640 x 480  
+------------------------
+Format_NV21             
+minimumFrameRate:  15   
+maximumFrameRate:  15   
+resolution:  640 x 480  
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  30   
+resolution:  720 x 480  
+------------------------
+Format_YV12             
+minimumFrameRate:  30   
+maximumFrameRate:  30   
+resolution:  720 x 480  
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  20   
+resolution:  720 x 480  
+------------------------
+Format_YV12             
+minimumFrameRate:  20   
+maximumFrameRate:  20   
+resolution:  720 x 480  
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  25   
+resolution:  720 x 480  
+------------------------
+Format_YV12             
+minimumFrameRate:  25   
+maximumFrameRate:  25   
+resolution:  720 x 480  
+------------------------
+Format_YV12             
+minimumFrameRate:  12   
+maximumFrameRate:  15   
+resolution:  720 x 480  
+------------------------
+Format_YV12             
+minimumFrameRate:  15   
+maximumFrameRate:  15   
+resolution:  720 x 480  
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  30   
+resolution:  720 x 480  
+------------------------
+Format_NV21             
+minimumFrameRate:  30   
+maximumFrameRate:  30   
+resolution:  720 x 480  
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  20   
+resolution:  720 x 480  
+------------------------
+Format_NV21             
+minimumFrameRate:  20   
+maximumFrameRate:  20   
+resolution:  720 x 480  
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  25   
+resolution:  720 x 480  
+------------------------
+Format_NV21             
+minimumFrameRate:  25   
+maximumFrameRate:  25   
+resolution:  720 x 480  
+------------------------
+Format_NV21             
+minimumFrameRate:  12   
+maximumFrameRate:  15   
+resolution:  720 x 480  
+------------------------
+Format_NV21             
+minimumFrameRate:  15   
+maximumFrameRate:  15   
+resolution:  720 x 480  
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  30   
+resolution:  720 x 720  
+------------------------
+Format_YV12             
+minimumFrameRate:  30   
+maximumFrameRate:  30   
+resolution:  720 x 720  
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  20   
+resolution:  720 x 720  
+------------------------
+Format_YV12             
+minimumFrameRate:  20   
+maximumFrameRate:  20   
+resolution:  720 x 720  
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  25   
+resolution:  720 x 720  
+------------------------
+Format_YV12             
+minimumFrameRate:  25   
+maximumFrameRate:  25   
+resolution:  720 x 720  
+------------------------
+Format_YV12             
+minimumFrameRate:  12   
+maximumFrameRate:  15   
+resolution:  720 x 720  
+------------------------
+Format_YV12             
+minimumFrameRate:  15   
+maximumFrameRate:  15   
+resolution:  720 x 720  
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  30   
+resolution:  720 x 720  
+------------------------
+Format_NV21             
+minimumFrameRate:  30   
+maximumFrameRate:  30   
+resolution:  720 x 720  
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  20   
+resolution:  720 x 720  
+------------------------
+Format_NV21             
+minimumFrameRate:  20   
+maximumFrameRate:  20   
+resolution:  720 x 720  
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  25   
+resolution:  720 x 720  
+------------------------
+Format_NV21             
+minimumFrameRate:  25   
+maximumFrameRate:  25   
+resolution:  720 x 720  
+------------------------
+Format_NV21             
+minimumFrameRate:  12   
+maximumFrameRate:  15   
+resolution:  720 x 720  
+------------------------
+Format_NV21             
+minimumFrameRate:  15   
+maximumFrameRate:  15   
+resolution:  720 x 720  
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  30   
+resolution:  960 x 720  
+------------------------
+Format_YV12             
+minimumFrameRate:  30   
+maximumFrameRate:  30   
+resolution:  960 x 720  
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  20   
+resolution:  960 x 720  
+------------------------
+Format_YV12             
+minimumFrameRate:  20   
+maximumFrameRate:  20   
+resolution:  960 x 720  
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  25   
+resolution:  960 x 720  
+------------------------
+Format_YV12             
+minimumFrameRate:  25   
+maximumFrameRate:  25   
+resolution:  960 x 720  
+------------------------
+Format_YV12             
+minimumFrameRate:  12   
+maximumFrameRate:  15   
+resolution:  960 x 720  
+------------------------
+Format_YV12             
+minimumFrameRate:  15   
+maximumFrameRate:  15   
+resolution:  960 x 720  
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  30   
+resolution:  960 x 720  
+------------------------
+Format_NV21             
+minimumFrameRate:  30   
+maximumFrameRate:  30   
+resolution:  960 x 720  
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  20   
+resolution:  960 x 720  
+------------------------
+Format_NV21             
+minimumFrameRate:  20   
+maximumFrameRate:  20   
+resolution:  960 x 720  
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  25   
+resolution:  960 x 720  
+------------------------
+Format_NV21             
+minimumFrameRate:  25   
+maximumFrameRate:  25   
+resolution:  960 x 720  
+------------------------
+Format_NV21             
+minimumFrameRate:  12   
+maximumFrameRate:  15   
+resolution:  960 x 720  
+------------------------
+Format_NV21             
+minimumFrameRate:  15   
+maximumFrameRate:  15   
+resolution:  960 x 720  
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  30   
+resolution:  1280 x 720 
+------------------------
+Format_YV12             
+minimumFrameRate:  30   
+maximumFrameRate:  30   
+resolution:  1280 x 720 
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  20   
+resolution:  1280 x 720 
+------------------------
+Format_YV12             
+minimumFrameRate:  20   
+maximumFrameRate:  20   
+resolution:  1280 x 720 
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  25   
+resolution:  1280 x 720 
+------------------------
+Format_YV12             
+minimumFrameRate:  25   
+maximumFrameRate:  25   
+resolution:  1280 x 720 
+------------------------
+Format_YV12             
+minimumFrameRate:  12   
+maximumFrameRate:  15   
+resolution:  1280 x 720 
+------------------------
+Format_YV12             
+minimumFrameRate:  15   
+maximumFrameRate:  15   
+resolution:  1280 x 720 
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  30   
+resolution:  1280 x 720 
+------------------------
+Format_NV21             
+minimumFrameRate:  30   
+maximumFrameRate:  30   
+resolution:  1280 x 720 
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  20   
+resolution:  1280 x 720 
+------------------------
+Format_NV21             
+minimumFrameRate:  20   
+maximumFrameRate:  20   
+resolution:  1280 x 720 
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  25   
+resolution:  1280 x 720 
+------------------------
+Format_NV21             
+minimumFrameRate:  25   
+maximumFrameRate:  25   
+resolution:  1280 x 720 
+------------------------
+Format_NV21             
+minimumFrameRate:  12   
+maximumFrameRate:  15   
+resolution:  1280 x 720 
+------------------------
+Format_NV21             
+minimumFrameRate:  15   
+maximumFrameRate:  15   
+resolution:  1280 x 720 
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  30   
+resolution:  1280 x 960 
+------------------------
+resolution:  1280 x 960 
+------------------------
+Format_YV12             
+minimumFrameRate:  20   
+maximumFrameRate:  20   
+resolution:  1280 x 960 
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  25   
+resolution:  1280 x 960 
+------------------------
+maximumFrameRate:  25   
+resolution:  1280 x 960 
+------------------------
+Format_YV12             
+minimumFrameRate:  12   
+maximumFrameRate:  15   
+resolution:  1280 x 960 
+------------------------
+Format_YV12             
+minimumFrameRate:  15   
+maximumFrameRate:  15   
+resolution:  1280 x 960 
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  30   
+resolution:  1280 x 960 
+------------------------
+Format_NV21             
+minimumFrameRate:  30   
+maximumFrameRate:  30   
+resolution:  1280 x 960 
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  20   
+resolution:  1280 x 960 
+------------------------
+Format_NV21             
+minimumFrameRate:  20   
+maximumFrameRate:  20   
+resolution:  1280 x 960 
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  25   
+resolution:  1280 x 960 
+------------------------
+Format_NV21             
+minimumFrameRate:  25   
+maximumFrameRate:  25   
+resolution:  1280 x 960 
+------------------------
+Format_NV21             
+minimumFrameRate:  12   
+maximumFrameRate:  15   
+resolution:  1280 x 960 
+------------------------
+Format_NV21             
+minimumFrameRate:  15   
+maximumFrameRate:  15   
+resolution:  1280 x 960 
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  30   
+resolution:  1536 x 864 
+------------------------
+Format_YV12             
+minimumFrameRate:  30   
+maximumFrameRate:  30   
+resolution:  1536 x 864 
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  20   
+resolution:  1536 x 864 
+------------------------
+Format_YV12             
+minimumFrameRate:  20   
+maximumFrameRate:  20   
+resolution:  1536 x 864 
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  25   
+resolution:  1536 x 864 
+------------------------
+Format_YV12             
+minimumFrameRate:  25   
+maximumFrameRate:  25   
+resolution:  1536 x 864 
+------------------------
+Format_YV12             
+minimumFrameRate:  12   
+maximumFrameRate:  15   
+resolution:  1536 x 864 
+------------------------
+Format_YV12             
+minimumFrameRate:  15   
+maximumFrameRate:  15   
+resolution:  1536 x 864 
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  30   
+resolution:  1536 x 864 
+------------------------
+Format_NV21             
+minimumFrameRate:  30   
+maximumFrameRate:  30   
+resolution:  1536 x 864 
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  20   
+resolution:  1536 x 864 
+------------------------
+Format_NV21             
+minimumFrameRate:  20   
+maximumFrameRate:  20   
+resolution:  1536 x 864 
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  25   
+resolution:  1536 x 864 
+------------------------
+Format_NV21             
+minimumFrameRate:  25   
+maximumFrameRate:  25   
+resolution:  1536 x 864 
+------------------------
+Format_NV21             
+minimumFrameRate:  12   
+maximumFrameRate:  15   
+resolution:  1536 x 864 
+------------------------
+Format_NV21             
+minimumFrameRate:  15   
+maximumFrameRate:  15   
+resolution:  1536 x 864 
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  30   
+resolution:  1440 x 1080
+------------------------
+Format_YV12             
+minimumFrameRate:  30   
+maximumFrameRate:  30   
+resolution:  1440 x 1080
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  20   
+resolution:  1440 x 1080
+------------------------
+Format_YV12             
+minimumFrameRate:  20   
+maximumFrameRate:  20   
+resolution:  1440 x 1080
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  25   
+resolution:  1440 x 1080
+------------------------
+Format_YV12             
+minimumFrameRate:  25   
+maximumFrameRate:  25   
+resolution:  1440 x 1080
+------------------------
+Format_YV12             
+minimumFrameRate:  12   
+maximumFrameRate:  15   
+resolution:  1440 x 1080
+------------------------
+Format_YV12             
+minimumFrameRate:  15   
+maximumFrameRate:  15   
+resolution:  1440 x 1080
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  30   
+resolution:  1440 x 1080
+------------------------
+Format_NV21             
+minimumFrameRate:  30   
+maximumFrameRate:  30   
+resolution:  1440 x 1080
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  20   
+resolution:  1440 x 1080
+------------------------
+Format_NV21             
+minimumFrameRate:  20   
+maximumFrameRate:  20   
+resolution:  1440 x 1080
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  25   
+resolution:  1440 x 1080
+------------------------
+Format_NV21             
+minimumFrameRate:  25   
+maximumFrameRate:  25   
+resolution:  1440 x 1080
+------------------------
+Format_NV21             
+minimumFrameRate:  12   
+maximumFrameRate:  15   
+resolution:  1440 x 1080
+------------------------
+Format_NV21             
+minimumFrameRate:  15   
+maximumFrameRate:  15   
+resolution:  1440 x 1080
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  30   
+resolution:  1920 x 1080
+------------------------
+Format_YV12             
+minimumFrameRate:  30   
+maximumFrameRate:  30   
+resolution:  1920 x 1080
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  20   
+resolution:  1920 x 1080
+------------------------
+Format_YV12             
+minimumFrameRate:  20   
+maximumFrameRate:  20   
+resolution:  1920 x 1080
+------------------------
+Format_YV12             
+minimumFrameRate:  14   
+maximumFrameRate:  25   
+resolution:  1920 x 1080
+------------------------
+Format_YV12             
+minimumFrameRate:  25   
+maximumFrameRate:  25   
+resolution:  1920 x 1080
+------------------------
+Format_YV12             
+minimumFrameRate:  12   
+maximumFrameRate:  15   
+resolution:  1920 x 1080
+------------------------
+Format_YV12             
+minimumFrameRate:  15   
+maximumFrameRate:  15   
+resolution:  1920 x 1080
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  30   
+resolution:  1920 x 1080
+------------------------
+Format_NV21             
+minimumFrameRate:  30   
+maximumFrameRate:  30   
+resolution:  1920 x 1080
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  20   
+resolution:  1920 x 1080
+------------------------
+Format_NV21             
+minimumFrameRate:  20   
+maximumFrameRate:  20   
+resolution:  1920 x 1080
+------------------------
+Format_NV21             
+minimumFrameRate:  14   
+maximumFrameRate:  25   
+resolution:  1920 x 1080
+------------------------
+Format_NV21             
+minimumFrameRate:  25   
+maximumFrameRate:  25   
+resolution:  1920 x 1080
+------------------------
+Format_NV21             
+minimumFrameRate:  12   
+maximumFrameRate:  15   
+resolution:  1920 x 1080
+------------------------
+Format_NV21             
+minimumFrameRate:  15   
+maximumFrameRate:  15   
+resolution:  1920 x 1080
