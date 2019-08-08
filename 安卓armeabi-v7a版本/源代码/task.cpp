@@ -1,13 +1,13 @@
 #include "task.h"
 
-VTask::VTask(QVideoFrame curFrame, MediaEncode *encode, PktList *list) :
+VTask::VTask(QVideoFrame &curFrame, MediaEncode *encode, PktList *list) :
     _curFrame(curFrame),
     _encode(encode),
     _list(list)
 {
     AVPixelFormat inFmt = _encode->_vArgs.in_pixFmt;
     AVPixelFormat outFmt = _encode->_vArgs.out_pixFmt;
-    CUR;
+    //CUR;
 #if 0
     if ((inFmt != AV_PIX_FMT_NV21) || (outFmt != AV_PIX_FMT_YUV420P)){
         qWarning()<<"QRunnable unsupported inFmt or outFmt";
@@ -18,8 +18,8 @@ VTask::VTask(QVideoFrame curFrame, MediaEncode *encode, PktList *list) :
 
 VTask::~VTask()
 {
-    sws_freeContext(_swsNv21toBgr24);
-    sws_freeContext(_swsBrg24toYuv420p);
+   // sws_freeContext(_swsNv21toBgr24);
+    sws_freeContext(_swsNv21toYuv420p);
 }
 
 void VTask::run()
@@ -36,8 +36,11 @@ void VTask::run()
     int outH = _encode->_vArgs.outHeight;
     long long sysPts = _encode->_sysPts;
 
-    CUR;
-#if 1
+    QThread *curTh = QThread::currentThread();
+    curTh->setStackSize(curTh->stackSize() * 2); // 线程栈大小放大2倍
+
+    //CUR;
+#if 0
     _swsNv21toBgr24 = sws_getCachedContext(_swsNv21toBgr24, \
         inW, inH, AV_PIX_FMT_NV21, \
         outW, outH, AV_PIX_FMT_BGR24, \
@@ -65,37 +68,30 @@ void VTask::run()
     qInfo()<<"ret1="<<ret1<<", ret2="<<ret2;
     FFmOpr::freeFrame(&bgr24);
 #endif
-#if 0
+#if 1
 
     if ((inFmt != AV_PIX_FMT_NV21) || (outFmt != AV_PIX_FMT_YUV420P)){
         qWarning()<<"QRunnable unsupported inFmt or outFmt";
         exit(0);
     }
-
-    // 分配帧
-    frame = av_frame_alloc();
-    frame->format = outFmt;
-    frame->width = outW;
-    frame->height = outH;
-    frame->pts = 0;
-    if (av_frame_get_buffer(frame, 32))	{   // yuv420p 是32字节对其
-        qWarning()<<"av_frame_get_buffer err";
-        return;
-    }
-
-
     /* 初始化格式转换上下文(Format_NV21->AV_PIX_FMT_YUV420P) */
     _swsNv21toYuv420p = sws_getCachedContext(_swsNv21toYuv420p, \
             inW, inH, inFmt, \
             outW, outH, outFmt, \
             SWS_FAST_BILINEAR, NULL, NULL, NULL);
 
-    ret = FFmOpr::Nv21toYuv420p(_swsNv21toYuv420p, _curFrame, frame);
+    ret = FFmOpr::allocFrame(&yuv420p, outW, outH, AV_PIX_FMT_YUV420P);
+    if (!ret){
+        qWarning()<<"allocFrame err";
+        return;
+    }
 
-    qInfo()<<"ret ="<< ret;
+    ret = FFmOpr::Nv21toYuv420p(_swsNv21toYuv420p, _curFrame, yuv420p);
+
+    //qInfo()<<"ret ="<< ret;
     if (ret <= 0) {
         qWarning()<<"Nv21toYuv420p Err";
-        FFmOpr::freeFrame(&frame);
+        FFmOpr::freeFrame(&yuv420p);
         return;
     }
 #endif
@@ -108,8 +104,8 @@ void VTask::run()
     pkt->pts = av_gettime() - sysPts;	// 包的时间戳(毫秒) = 当前时间-开始记录的时间
     if (!(_encode->vEncode(yuv420p, pkt))) {
         qWarning()<<"ERR: vEncode()";
-        //FFmOpr::freeFrame(&yuv420p);
-        //FFmOpr::freePkt(&pkt);
+        FFmOpr::freeFrame(&yuv420p);
+        FFmOpr::freePkt(&pkt);
         return;
     }
     FFmOpr::freeFrame(&yuv420p);

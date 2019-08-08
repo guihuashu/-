@@ -44,18 +44,26 @@ void QtVideoCap::stateChanged(QCamera::State state)
     for (int i=0; i < list.size(); i++)
     {
         QCameraViewfinderSettings set = list.at(i);
-        // 取30fps 640x480
+        qInfo()<<"------------support ----------------";
+        qInfo()<<set.pixelFormat();
+        qInfo()<<"minimumFrameRate: "<<set.minimumFrameRate();
+        qInfo()<<"maximumFrameRate: "<<set.maximumFrameRate();
+        qInfo()<<"resolution: "<<set.resolution().width()<<"x"<<set.resolution().height();
         if (set.resolution() == _inSize \
            &&  (set.maximumFrameRate()>=_fps) \
            &&  (set.maximumFrameRate()<(_fps +10)) \
            &&  (set.pixelFormat() == _inFmt))
         {
             _camera->setViewfinderSettings(set);
-            qWarning()<<set.minimumFrameRate();
-            qWarning()<<set.maximumFrameRate();
-            qWarning()<<set.resolution().width()<<"x"<<set.resolution().height();
+            qInfo()<<"--------- seted -------------------";
+            qInfo()<<"minimumFrameRate: "<<set.minimumFrameRate();
+            qInfo()<<"maximumFrameRate: "<<set.maximumFrameRate();
+            qInfo()<<"resolution: "<<set.resolution().width()<<"x"<<set.resolution().height();
             return;
         }
     }
+    CUR;
+    qWarning()<<"unsupport video set, please Please select the correct format ";
+    exit(0);
 }
 

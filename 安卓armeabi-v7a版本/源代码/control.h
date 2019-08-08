@@ -26,23 +26,26 @@ public:
 public slots:
     void newVideoFrame(const QVideoFrame &frame);
     void pushStream();
-    void set_Args();
+    void setVParam();
+    void setAParam();
+    void set_paintVcapFlag(bool flag);  // 设置是否显示采集视频的标记
 signals:
     void showVideoFrame(QVideoFrame frame);
 
 public:
+    int TaskThreadNum = 50; // 处理任务的最多线程数
+
     // 包缓存队列参数
     PktList *_aPktList;
     PktList *_vPktList;
-    unsigned int _aPktListSize = 5;
-    unsigned int _vPktListSize = 5;
+    unsigned int _aPktListSize = 10;
+    unsigned int _vPktListSize = 3;
 
     // 视频采集参数
-    QSize _inSize = {640,480};
-    QSize _outSize = {640,480};
+    QSize _inSize = {320,240};
+    QSize _outSize = _inSize;
     AVPixelFormat _inFmt = AV_PIX_FMT_NV21;
     AVPixelFormat _outFmt = AV_PIX_FMT_YUV420P;
-    double _fps = 30;
     QtVideoCap *_cap;
 
     // 音视频编码参数
@@ -57,7 +60,8 @@ public:
     QThreadPool *_pool;
 
     // 显示采集视频
-    ShowVCap *_vCap;
+    ShowVCap *_showVCap;
+    bool _paintVcapFlag;    // 是否显示视频
 
 };
 

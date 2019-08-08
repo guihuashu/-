@@ -22,19 +22,20 @@ extern "C" {
 #include <pktlist.h>
 #include <MediaEncode.h>
 #include <list>
+#include <QThread>
 
 
 class VTask : public QRunnable
 {
 public:
-    VTask(QVideoFrame curFrame, MediaEncode *encode, PktList *list);
+    VTask(QVideoFrame &curFrame, MediaEncode *encode, PktList *list);
     ~VTask();
     virtual void run();
 
 private:
     QVideoFrame _curFrame;
     MediaEncode *_encode;
-    //SwsContext *_swsNv21toYuv420p = NULL;
+    SwsContext *_swsNv21toYuv420p = NULL;
     SwsContext *_swsNv21toBgr24 = NULL;
     SwsContext *_swsBrg24toYuv420p = NULL;
 

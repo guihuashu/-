@@ -3,6 +3,7 @@
 #include <iostream>
 #include <qtvideocap.h>
 #include <MediaEncode.h>
+#include <debug.h>
 
 extern "C" {
     #include <libavformat/avformat.h>
@@ -24,7 +25,7 @@ public:
     //bool init(string outUrl, string streamFmt, MediaEncode *encode);
 	bool addStream(AVCodecContext *encodeCtx);
 	void dump_outMediaFmt();
-	bool write_headerInfo();
+    void write_headerInfo();
 	bool send_vPkt(AVPacket *pkt);
 	bool send_aPkt(AVPacket *pkt);
 

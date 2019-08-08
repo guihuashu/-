@@ -2,25 +2,24 @@
 
 OutMedia::OutMedia(string outUrl, string streamFmt, MediaEncode *encode)
 {
-	cout << "------------------  OutMedia  ------------------" << endl;
+    qInfo() << "------------------  OutMedia  ------------------";
     this->outUrl = outUrl;
     this->streamFmt = streamFmt;
-
     if (0 > avformat_alloc_output_context2(&this->outFmtCtx, NULL, streamFmt.c_str(), outUrl.c_str())) {
-        cout << "ERR: avformat_alloc_output_context2" << endl;
+        qWarning()<< "ERR: avformat_alloc_output_context2";
         exit(0);
     }
-
     // 推流延迟优化
-    outFmtCtx->max_interleave_delta = 0;			// 交叉存取的最大延迟
-    outFmtCtx->max_delay = 0;
-
+    //outFmtCtx->max_interleave_delta = 0;			// 交叉存取的最大延迟
+    //outFmtCtx->max_delay = 0;
 
     /* 增加音频流和视频流 */
-    //addStream(mediaEncode.aEncodeCtx);    // 增加音频流
+    //addStream(encode->aEncodeCtx);    // 增加音频流
     addStream(encode->_vEncodeCtx); // 增加视频流
-    dump_outMediaFmt();
+    CUR;
+    //dump_outMediaFmt();
     write_headerInfo();
+    CUR;
 }
 
 
@@ -53,10 +52,15 @@ void OutMedia::dump_outMediaFmt()
 		av_dump_format(outFmtCtx, i, this->outUrl.c_str(), 1);		// 输出outFmtCtx中的视频流信息
 	}
 }
-bool OutMedia::write_headerInfo()
+void OutMedia::write_headerInfo()
 {
 	avio_open(&this->outFmtCtx->pb, this->outUrl.c_str(), AVIO_FLAG_WRITE);
-	return (0 < avformat_write_header(this->outFmtCtx, NULL));
+    if (avformat_write_header(this->outFmtCtx, NULL) < 0) {
+        CUR;
+        qWarning()<<"ERR: write_headerInfo";
+        exit(0);
+        return;
+    }
 }
 
 bool OutMedia::send_vPkt(AVPacket *vPkt)
@@ -76,16 +80,16 @@ bool OutMedia::send_vPkt(AVPacket *vPkt)
 	vPkt->dts = av_rescale_q(vPkt->dts, sysTimebase, vStream->time_base);
 	vPkt->duration = av_rescale_q(vPkt->duration, sysTimebase, vStream->time_base);
 
-		cout << "#" << vPkt->size << " " << flush;
+    qInfo() << "#" << vPkt->size << " " << flush;
 	/* 将编码后的数据包发送到输出格式上下文中 */
 	if (av_interleaved_write_frame(outFmtCtx, vPkt)) {
 		av_packet_unref(vPkt);	// 包中数据的引用计数-1
-		av_packet_free(&vPkt);
+        //av_packet_free(&vPkt);
 		vPkt = NULL;
 		return false;
 	}
 	av_packet_unref(vPkt);	// 包中数据的引用计数-1
-	av_packet_free(&vPkt);
+    //av_packet_free(&vPkt);
 	vPkt = NULL;
 	return true;
 }

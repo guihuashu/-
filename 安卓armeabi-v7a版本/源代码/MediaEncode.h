@@ -7,6 +7,7 @@
 #include <QDebug>
 #include <QMutex>
 #include <debug.h>
+#include <string>
 
 
 extern "C" {
@@ -35,11 +36,18 @@ typedef struct vEncodeArgs {
     int fps;
     enum AVPixelFormat out_pixFmt;	// 输出帧的像素格式
     enum AVPixelFormat in_pixFmt;	// 输出帧的像素格式
+    std::string CRF;                // 压缩率, 范围 0-51: 0是编码毫无丢失信息, 23 is 默认, 51 是最差的情况。相对合理的区间是18-28.
 }vEncodeArgs;
 
 // 音频编码器参数
 typedef struct aEncodeArgs {
-
+    int sample_rate;                    // 音频采样率
+    int channels;                       // 音频采样通道数
+    int frameDateSize;                  // 一帧音频数据的字节数
+    enum AVSampleFormat sample_fmt;     // 采样格式
+    enum AVSampleFormat resample_fmt;   // 重采样格式
+    int thread_count;					// 用于编码的线程数
+    int64_t bit_rate; 					// 码率, 越大声音越清晰
 }aEncodeArgs;
 
 class MediaEncode : QObject

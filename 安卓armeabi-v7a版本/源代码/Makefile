@@ -938,6 +938,7 @@ moc_control.cpp: control.h \
 		task.h \
 		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\QSize \
 		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\QRunnable \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\QThread \
 		OutMedia.h \
 		showvcap.h \
 		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtGui\QPainter \
@@ -2152,7 +2153,9 @@ task.obj: task.cpp task.h \
 		debug.h \
 		pktlist.h \
 		MediaEncode.h \
-		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\QMutex
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\QMutex \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\QThread \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qthread.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o task.obj task.cpp
 
 pktlist.obj: pktlist.cpp pktlist.h \
@@ -2457,6 +2460,7 @@ control.obj: control.cpp control.h \
 		task.h \
 		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\QSize \
 		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\QRunnable \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\QThread \
 		OutMedia.h \
 		showvcap.h \
 		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtGui\QPainter \

@@ -35,24 +35,29 @@ bool MediaEncode::init_vEncodeCtx()
         qWarning()<<"ERR: avcodec_alloc_context3";
         return false;
     }
+
     _vEncodeCtx->codec_id = codec->id;					// h264
     _vEncodeCtx->flags |= AV_CODEC_FLAG_GLOBAL_HEADER;	 // 全局标记
-    _vEncodeCtx->thread_count = 6;		// 用于编码的线程数
-    _vEncodeCtx->bit_rate =  20 *1024 *8;				// 码率, 越大视频越清晰
-    _vEncodeCtx->width = 640;                           // 输出图像的宽度 = 输入的宽度
-    _vEncodeCtx->height = 480;                          // 输出图像的高度
+    _vEncodeCtx->thread_count = _vArgs.thread_count;		// 用于编码的线程数
+    _vEncodeCtx->bit_rate =  _vArgs.bit_rate;				// 码率, 越大视频越清晰
+    _vEncodeCtx->width = _vArgs.outWidth;                           // 输出图像的宽度 = 输入的宽度
+    _vEncodeCtx->height = _vArgs.outHeight;                          // 输出图像的高度
     _vEncodeCtx->time_base = { 1,1000000 };                 // 时间基数,微秒
-    _vEncodeCtx->framerate = { 30, 1 };                      // fps
-    _vEncodeCtx->gop_size = 50;                             // 关键帧周期
-    _vEncodeCtx->max_b_frames = 0;                          // 最大b帧数, 有b帧就会有延迟
-    _vEncodeCtx->pix_fmt = AV_PIX_FMT_YUV420P;				// 输入帧的像素格式
+    _vEncodeCtx->framerate = { _vArgs.fps, 1 };                      // fps
+    _vEncodeCtx->gop_size = _vArgs.gop_size;                             // 关键帧周期
+    _vEncodeCtx->max_b_frames = _vArgs.max_b_frames;                          // 最大b帧数, 有b帧就会有延迟
+    _vEncodeCtx->pix_fmt = _vArgs.out_pixFmt;				// 输入帧的像素格式
+    // 新增
+    _vEncodeCtx->codec_type = AVMEDIA_TYPE_VIDEO;
+    _vEncodeCtx->global_quality = 1;
+
     // 优化推流延迟, 设置编码器的的私有属性来优化推流延迟
     //_vEncodeCtx->delay = 0;
     CUR;
     // 设置太快,编码器吃不消, 会有马赛克
-    //av_opt_set(_vEncodeCtx->priv_data, "fast", "faster", 0); //设置priv_data的option
-    //av_opt_set(_vEncodeCtx->priv_data, "tune", "zerolatency", 0); //设置priv_data的option
-    av_opt_set(_vEncodeCtx->priv_data, "tune", "fastdecode", 0); //设置priv_data的option
+    av_opt_set(_vEncodeCtx->priv_data, "preset ", "ultrafast ", 0); //设置priv_data的option
+    av_opt_set(_vEncodeCtx->priv_data, "tune", "zerolatency", 0); //设置priv_data的option
+    av_opt_set(_vEncodeCtx->priv_data, "x264opts", _vArgs.CRF.c_str(), 0);  // crf:0-51, 0表示不压缩, 51表示最高压缩比
     // 安卓上设置这个会报错
     //av_opt_set(_vEncodeCtx->priv_data, "x264opts", "sync-lookahead=0: sliced-threads", 0);
     if (avcodec_open2(_vEncodeCtx, NULL, NULL))	{       // 打开编码器(编码器开始待解码)
@@ -97,7 +102,7 @@ bool MediaEncode::vEncode(AVFrame *yuv420p_, AVPacket *vPkt)
 
 
 
-#if 0
+#if 1
 /////////////////////////////////////////////////////////
 bool MediaEncode::aEncode(AVFrame *pcm_, AVPacket *aPkt)
 {

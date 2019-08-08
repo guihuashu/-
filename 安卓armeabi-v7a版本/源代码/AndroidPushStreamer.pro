@@ -63,11 +63,7 @@ HEADERS += \
     pktlist.h \
     control.h \
     debug.h \
-    showvcap.h
-#    ffm_audioTst.h \
-#    OutMedia.h \
-#    videoAudioTst.h \
-#    showwidget.h
+    showvcap.h \
 
 SOURCES += \
     main.cpp \
@@ -79,12 +75,8 @@ SOURCES += \
     task.cpp \
     pktlist.cpp \
     control.cpp \
-    showvcap.cpp
-#    ffm_audioTst.cpp \
-#    ffm_videoTst.cpp \
-#    OutMedia.cpp \
-#    videoAudioTst.cpp \
-#    showwidget.cpp
+    showvcap.cpp \
+
 
 #FORMS += \
 #    showwidget.ui

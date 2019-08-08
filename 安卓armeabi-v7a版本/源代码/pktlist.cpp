@@ -17,16 +17,17 @@ void PktList::pushBackPkt(AVPacket *pkt)
 
     _mutex.lock();
     while (_pktList.size() >= _listSize){   // 链表满了
-        CUR;
+        //CUR;
         if (_pktList.size() < 1)
             break;
         // 从前面删除包
         AVPacket *pkt = _pktList.front();  // 取出第一个包
         _pktList.pop_front();              // 删除第一个节点
-        FFmOpr::freePkt(&pkt);             // 释放包
+        //FFmOpr::freePkt(&pkt);             // 释放包
+        av_packet_unref(pkt);
     }
     _pktList.push_back(pkt);    // 包压入链表尾部
-    qInfo()<<"_list->size() = "<<_pktList.size();
+    //qInfo()<<"_list->size() = "<<_pktList.size();
     _mutex.unlock();
 }
 
@@ -45,6 +46,8 @@ AVPacket *PktList::fontPkt()
 
 unsigned int PktList::size()
 {
+    _mutex.lock();
     return _pktList.size();
+    _mutex.unlock();
 }
 
