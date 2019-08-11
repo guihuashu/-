@@ -48,6 +48,7 @@ typedef struct aEncodeArgs {
     enum AVSampleFormat resample_fmt;   // 重采样格式
     int thread_count;					// 用于编码的线程数
     int64_t bit_rate; 					// 码率, 越大声音越清晰
+    int nb_samples;                     // 单通道样本数量
 }aEncodeArgs;
 
 class MediaEncode : QObject
@@ -59,7 +60,8 @@ public:
 
 	// 视频相关函数
     //bool init();
-    bool init_vEncodeCtx();
+    bool init_vEncode();
+    bool init_aEncode();
 
     //void set_vCodeArg(enum vEncodeArgType type, int64_t val);
     //bool init_vEncode();
@@ -68,19 +70,21 @@ public:
     //AVFrame *brg24ToYuv420p(cv::Mat *inMat);
     //AVFrame *fmtS16_to_fmtFltp(char *inData);
 
-    //bool aEncode(AVFrame *inFrame, AVPacket *aPkt);
+    bool aEncode(AVFrame *inFrame, AVPacket *aPkt);
     bool vEncode(AVFrame *inFrame, AVPacket *vPkt);
 
 
 public:
 	// 视频相关变量
     AVCodecContext *_vEncodeCtx = NULL;
-	AVCodecContext *aEncodeCtx = NULL;
-	AVFrame *pcm = NULL;
+    AVCodecContext *_aEncodeCtx = NULL;
+    QMutex vMutex;
+    QMutex _aEncodeCtxMutex;
+
     vEncodeArgs _vArgs;
     aEncodeArgs _aArgs;
-    QMutex vMutex;
-    //SwrContext *aSwr = NULL;
+    SwrContext *_swrS16toFltp = NULL;
+    QMutex swrMutex;
 
 //	// 音频相关变量
 //	int sampleRate = 44100;	 // 采样率 44100

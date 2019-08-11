@@ -10,7 +10,7 @@ QtVideoCap::QtVideoCap(QSize inSize, double fps, QVideoFrame::PixelFormat inFmt,
 
     if (_inFmt != QVideoFrame::Format_NV21) {
         qWarning()<<"cannot unsupport cap fmt";
-        exit(0);
+        getchar();
     }
     init();
 }
@@ -64,6 +64,6 @@ void QtVideoCap::stateChanged(QCamera::State state)
     }
     CUR;
     qWarning()<<"unsupport video set, please Please select the correct format ";
-    exit(0);
+    getchar();
 }
 

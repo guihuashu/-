@@ -46,7 +46,12 @@ void Control::setAargs()
     _aArgs.resample_fmt = AV_SAMPLE_FMT_FLTP;   // 重采样格式
     _aArgs.thread_count = 8;					// 用于编码的线程数
     _aArgs.bit_rate = 50 * 1024 * 8;            // 码率, 越大声音越清晰
-    _aArgs.frameDateSize = 4096;
+    _aArgs.nb_samples = 1024;
+    if (_aArgs.sample_fmt != AV_SAMPLE_FMT_S16) {
+        CUR;
+        qWarning()<<"unsupport sample_fmt:";
+    }
+    _aArgs.frameDateSize = _aArgs.nb_samples * _aArgs.channels * (16 /8); // s16表示两个字节
 }
 
 void Control::set_paintVcapFlag(bool flag)
@@ -58,18 +63,14 @@ void Control::set_paintVcapFlag(bool flag)
 
 
 bool Control::init()
-{
-    if ((_inFmt != AV_PIX_FMT_NV21) || (_outFmt != AV_PIX_FMT_YUV420P) ) {
-        qWarning()<<"cannot unsupport cap fmt";
-        exit(0);
-    }
-
+{ 
     setVargs();
     setAargs();
     set_paintVcapFlag(false);
     _encode = new MediaEncode(_vArgs, _aArgs);
-    _vCap = new QtVideoCap(_inSize, _vArgs.fps, QVideoFrame::Format_NV21);
+    //_vCap = new QtVideoCap(_inSize, _vArgs.fps, QVideoFrame::Format_NV21);
     _aCap = new QtAudioRecord(_aArgs);
+    _aCap->start();         // 使用线程采集音频
 
     outMedia = new OutMedia(outUr, streamFmt, _encode);
 
@@ -91,7 +92,7 @@ void Control::newVideoFrame(const QVideoFrame &frame)
 {
     //qInfo()<<"newVideoFrame";
     QVideoFrame curFrame = frame;
-    curFrame.map(QAbstractVideoBuffer::ReadOnly);
+    curFrame.map(QAbstractVideoBuffer::ReadOnly); // 需要映射才能读取其累不数据
     if (!curFrame.isValid()) {
         qWarning()<<"curFrame inValid";
         return;
@@ -104,7 +105,9 @@ void Control::newVideoFrame(const QVideoFrame &frame)
 
 void Control::newAudioFrame(AudioFrame &audioFrame)
 {
-    qInfo()<<audioFrame.dataSize;
+    qInfo()<<"newAudioFrame: "<<audioFrame.dataSize;
+    ATask *aTask = new ATask(audioFrame, _encode, _aPktList);
+    _pool->start(aTask);
 }
 
 
@@ -112,22 +115,26 @@ static void workPushStream(PktList *aPktList, PktList *vPktList, OutMedia *outMe
 {
     while(1)
     {
-        AVPacket *aPkt;
+        AVPacket *aPkt = aPktList->fontPkt();
         AVPacket *vPkt = vPktList->fontPkt();
         /* 必须要这样, 否则音频卡顿 */
-        if ( !vPkt)
+        if ( !aPkt)
             continue;
         //CUR;
-#if 0
-        if (aPkt)
-            outMedia.send_aPkt(aPkt);
+#if 1
+        if (aPkt) {
+            outMedia->send_aPkt(aPkt);
+            av_usleep(10);
+        }
 #endif
+#if 0
         if (vPkt) {
             //CUR;
             outMedia->send_vPkt(vPkt);
             av_usleep(1000);    // 最好不要让包中有缓存
         }
         //av_usleep(1000 * 20);
+#endif
     }
 }
 

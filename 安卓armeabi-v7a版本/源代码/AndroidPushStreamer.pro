@@ -78,19 +78,21 @@ SOURCES += \
     qtaudiorecord.cpp
 
 
-#FORMS += \
-#    showwidget.ui
+FORMS += \
+    showvcap.ui
 
 contains(ANDROID_TARGET_ARCH,armeabi-v7a) {
     ANDROID_EXTRA_LIBS = \
-        D:/VST___/src/AndroidPushStreamer/../../lib/armeabi-v7a/libavcodec.so \
-        D:/VST___/src/AndroidPushStreamer/../../lib/armeabi-v7a/libavfilter.so \
-        D:/VST___/src/AndroidPushStreamer/../../lib/armeabi-v7a/libavformat.so \
-        D:/VST___/src/AndroidPushStreamer/../../lib/armeabi-v7a/libavutil.so \
-        D:/VST___/src/AndroidPushStreamer/../../lib/armeabi-v7a/libswresample.so \
-        D:/VST___/src/AndroidPushStreamer/../../lib/armeabi-v7a/libswscale.so \
-        D:/VST___/src/AndroidPushStreamer/../../lib/armeabi-v7a/libfdk-aac.so
+        $$PWD/../../lib/armeabi-v7a/libavcodec.so \
+        $$PWD/../../lib/armeabi-v7a/libavdevice.so \
+        $$PWD/../../lib/armeabi-v7a/libavfilter.so \
+        $$PWD/../../lib/armeabi-v7a/libavformat.so \
+        $$PWD/../../lib/armeabi-v7a/libavutil.so \
+        $$PWD/../../lib/armeabi-v7a/libpostproc.so \
+        $$PWD/../../lib/armeabi-v7a/libswresample.so \
+        $$PWD/../../lib/armeabi-v7a/libswscale.so
 }
 
-FORMS += \
-    showvcap.ui
+
+
+

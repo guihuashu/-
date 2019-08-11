@@ -28,7 +28,7 @@ void ShowVCap::showVideoFrame(QVideoFrame vf)
     AVFrame *frame;
 
     //qInfo()<<
-    if (!FFmOpr::allocFrame(&frame, 640, 480, AV_PIX_FMT_RGB24)) {
+    if (!FFmOpr::allocVFrame(&frame, 640, 480, AV_PIX_FMT_RGB24)) {
         qWarning()<<"allocFrame err";
         return;
     }

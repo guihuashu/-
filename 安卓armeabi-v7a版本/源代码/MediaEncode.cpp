@@ -1,5 +1,5 @@
 #include "MediaEncode.h"
-
+#include <iostream>
 using namespace std;
 
 
@@ -11,7 +11,11 @@ MediaEncode::MediaEncode(vEncodeArgs &vArgs, aEncodeArgs &aArgs)
     _sysPts = av_gettime();
     _sysTimebase = { 1, 1000000 };	// 系统时间基数	(时间秒数 = 时间戳 * 时间基数)
 
-    init_vEncodeCtx();
+    if (!init_vEncode() || !init_aEncode()){
+        qWarning()<<"ERR: MediaEncode init";
+        getchar();
+    }
+    qInfo()<<"OK: MediaEncode init";
 }
 
 MediaEncode::~MediaEncode()
@@ -22,12 +26,12 @@ MediaEncode::~MediaEncode()
 }
 
 
-bool MediaEncode::init_vEncodeCtx()
+bool MediaEncode::init_vEncode()
 {
     /* 1.初始化视频编码器 */
     AVCodec *codec = avcodec_find_encoder(AV_CODEC_ID_H264);
     if (!codec) {
-        qWarning()<<"ERR: avcodec_find_encoder";
+        qWarning()<<"ERR: avcodec_find_encoder(AV_CODEC_ID_H264)";
         return false;
     }
     _vEncodeCtx = avcodec_alloc_context3(codec);
@@ -52,7 +56,7 @@ bool MediaEncode::init_vEncodeCtx()
     _vEncodeCtx->global_quality = 1;
 
     // 优化推流延迟, 设置编码器的的私有属性来优化推流延迟
-    //_vEncodeCtx->delay = 0;
+    _vEncodeCtx->delay = 0;
     CUR;
     // 设置太快,编码器吃不消, 会有马赛克
     av_opt_set(_vEncodeCtx->priv_data, "preset ", "ultrafast ", 0); //设置priv_data的option
@@ -64,9 +68,75 @@ bool MediaEncode::init_vEncodeCtx()
         qWarning()<<"ERR: avcodec_open2(_vEncodeCtx, 0, 0)";
         return false;
     }
-    CUR;
+    qInfo()<<"avcodec_open2(_vEncodeCtx, NULL, NULL) OK";
     return true;
 }
+bool MediaEncode::init_aEncode()
+{
+    // 1.创建音频编解码器上下文
+    int ret;
+    int aBit_rate = _aArgs.bit_rate;
+    int thread_count = _aArgs.thread_count;
+    int sampleRate = _aArgs.sample_rate;
+    int channels =  _aArgs.channels;
+
+    enum AVSampleFormat sampleFmt = _aArgs.sample_fmt;
+    enum AVSampleFormat resampleFmt = _aArgs.resample_fmt;
+
+
+
+
+    AVCodec *codec = avcodec_find_encoder(AV_CODEC_ID_AAC);
+    if (!codec) {
+        qWarning() << "ERR: avcodec_find_encoder(AV_CODEC_ID_AAC) !";
+        return false;
+    }
+    qInfo() << "avcodec_find_encoder(AV_CODEC_ID_AAC) OK";
+    //音频编码器上下文
+    _aEncodeCtx = avcodec_alloc_context3(codec);
+    if (!_aEncodeCtx) {
+        qWarning() << "ERR: avcodec_alloc_context3: AV_CODEC_ID_AAC!";
+        return false;
+    }
+    _aEncodeCtx->flags |= AV_CODEC_FLAG_GLOBAL_HEADER;
+    _aEncodeCtx->thread_count = thread_count;
+    _aEncodeCtx->bit_rate = aBit_rate;
+
+    /* 注意: 编码器时间戳 = 1 / 采样率 = 1 / 44100	*/
+    _aEncodeCtx->sample_rate = sampleRate;	// 44100
+    _aEncodeCtx->sample_fmt = resampleFmt;
+    _aEncodeCtx->channels = channels;
+    _aEncodeCtx->channel_layout = av_get_default_channel_layout(channels);
+
+    // 音频编码速度优化
+    _aEncodeCtx->profile = FF_PROFILE_MPEG2_AAC_HE;
+
+    //打开音频编码器
+    if(avcodec_open2(_aEncodeCtx, 0, 0) < 0) {
+        qWarning()<<"ERR: avcodec_open2(aEncodeCtx, 0, 0)";
+        return false;
+    }
+    qInfo() << "avcodec_open2(_aEncodeCtx) success!";
+
+
+    /* 2.创建重采样上下文 */
+    _swrS16toFltp = swr_alloc_set_opts(_swrS16toFltp,
+        av_get_default_channel_layout(channels), resampleFmt, sampleRate,//输出格式
+        av_get_default_channel_layout(channels), sampleFmt, sampleRate,  //输入格式
+        0, 0);
+    if (!_swrS16toFltp) {
+        CUR;
+        qWarning()<<"ERR: swr_alloc_set_opts!";
+        return false;
+    }
+    if (swr_init(_swrS16toFltp) < 0) {
+        qWarning()<<"ERR: swr_init!";
+        return false;
+    }
+    qInfo()<<"create _swrS16toFltp OK";
+    return true;
+}
+
 
 bool MediaEncode::vEncode(AVFrame *yuv420p_, AVPacket *vPkt)
 {
@@ -96,122 +166,44 @@ bool MediaEncode::vEncode(AVFrame *yuv420p_, AVPacket *vPkt)
     return true;
 }
 
-
-
-
-
-
-
-#if 1
 /////////////////////////////////////////////////////////
-bool MediaEncode::aEncode(AVFrame *pcm_, AVPacket *aPkt)
+bool MediaEncode::aEncode(AVFrame *fltp, AVPacket *aPkt)
 {
+
 #if 0	// 这是基于采样率计算的pts
 
-	pcm_->pts = aPts;
+    fltp->pts = aPts;
 
 	// 编码时间戳 = 一帧音频的秒数sec / 编码时间基数
-	//apts += (pcm->nb_samples / sampleRate) / (ac->time_base.num / ac->time_base.den);
-	aPts += av_rescale_q(pcm_->nb_samples, { 1,sampleRate }, aEncodeCtx->time_base);
+    //apts += (fltp->nb_samples / sampleRate) / (ac->time_base.num / ac->time_base.den);
+    aPts += av_rescale_q(fltp->nb_samples, { 1,sampleRate }, aEncodeCtx->time_base);
 #endif	
 	// CPU过一段时间才计时,避免相邻两帧pts相同
 	static long long prePts = -1;
 	if (prePts == aPkt->pts)
-		aPkt->pts += 1000;
+        aPkt->pts += 1000;  // 单位为微秒
 	prePts = aPkt->pts;
+    fltp->pts = aPkt->pts;
 
-	pcm_->pts = aPkt->pts;
+    av_init_packet(aPkt);
 	// 将一帧音频放入编码器队列
-	if (avcodec_send_frame(aEncodeCtx, pcm_))
-		return false;
-
-	av_init_packet(aPkt);
+    _aEncodeCtxMutex.lock();
+    if (avcodec_send_frame(_aEncodeCtx, fltp)) {
+        _aEncodeCtxMutex.unlock();
+        return false;
+    }
 	// 从编码器队列中取出已经编码的帧
-	if (avcodec_receive_packet(aEncodeCtx, aPkt))
-		return false;
-	return true;
+    if (avcodec_receive_packet(_aEncodeCtx, aPkt)){
+        _aEncodeCtxMutex.unlock();
+        return false;
+    }
+    _aEncodeCtxMutex.unlock();
+    return true;
 }
 
-////////////////////////////////////////////////////////////////////
-bool MediaEncode::init_aEncode()
-{
-	// 1.创建音频编解码器上下文
-	int ret;
-	AVCodec *codec = avcodec_find_encoder(AV_CODEC_ID_AAC);
-	if (!codec) {
-		cout << "avcodec_find_encoder AV_CODEC_ID_AAC failed!" << endl;
-		return false;
-	}
 
-	//音频编码器上下文
-	aEncodeCtx = avcodec_alloc_context3(codec);
-	if (!aEncodeCtx) {
-		cout << "avcodec_alloc_context3 AV_CODEC_ID_AAC failed!" << endl;
-		return false;
-	}
 
-	cout << "avcodec_alloc_context3 success!" << endl;
-	aEncodeCtx->flags |= AV_CODEC_FLAG_GLOBAL_HEADER;
-    aEncodeCtx->thread_count = 8;
-	aEncodeCtx->bit_rate = aBit_rate;
-
-	/* 注意: 编码器时间戳 = 1 / 采样率 = 1 / 44100	*/
-	aEncodeCtx->sample_rate = sampleRate;	// 44100
-	aEncodeCtx->sample_fmt = AV_SAMPLE_FMT_FLTP;
-	aEncodeCtx->channels = channels;
-	aEncodeCtx->channel_layout = av_get_default_channel_layout(channels);
-
-	// 音频延迟优化
-	aEncodeCtx->profile = FF_PROFILE_MPEG2_AAC_HE;
-
-	//打开音频编码器
-	ret = avcodec_open2(aEncodeCtx, 0, 0);
-	if (ret != 0)
-		return false;
-	cout << "avcodec_open2 success!" << endl;
-
-	/* 2.创建重采样上下文 */
-	AVSampleFormat inSampleFmt = AV_SAMPLE_FMT_S16;
-	AVSampleFormat outSampleFmt = AV_SAMPLE_FMT_FLTP;
-
-	this->aSwr = swr_alloc_set_opts(this->aSwr,
-		av_get_default_channel_layout(this->channels), outSampleFmt, sampleRate,//输出格式
-		av_get_default_channel_layout(this->channels), inSampleFmt, sampleRate, 0, 0);//输入格式
-	if (!this->aSwr) {
-		cout << "swr_alloc_set_opts failed!";
-		return false;
-	}
-	ret = swr_init(this->aSwr);
-	if (ret != 0) {
-		return false;
-	}
-	cout << "音频重采样 上下文初始化成功!" << endl;
-
-	/* 3. 分配保存重采样后的帧 */
-	pcm = av_frame_alloc();
-	pcm->format = outSampleFmt;
-	pcm->channels = channels;
-	pcm->channel_layout = av_get_default_channel_layout(channels);
-	pcm->nb_samples = this->nb_samples;
-	ret = av_frame_get_buffer(pcm, 0);  // 给pcm分配存储空间
-	if (ret != 0) {
-		cout << "ERR: av_frame_get_buffer(pcm, 0)" << endl;
-		return false;
-	}
-	return true;
-}
-
-//重采样源S16数据, 存放到pcm中
-AVFrame *MediaEncode::fmtS16_to_fmtFltp(char *inData)
-{
-	const uint8_t *indata[AV_NUM_DATA_POINTERS] = { 0 };
-	indata[0] = (uint8_t *)inData;
-	int len = swr_convert(this->aSwr, pcm->data, pcm->nb_samples, //输出参数，输出存储地址和样本数量
-		indata, pcm->nb_samples);
-	if (len <= 0)
-		return NULL;
-	return pcm;
-}
+#if 0
 
 ///////////////////////////////////////////////////////////////
 AVPacket *MediaEncode::gain_aPkt()

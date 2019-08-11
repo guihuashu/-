@@ -1,17 +1,17 @@
 #include "task.h"
 
-VTask::VTask(QVideoFrame &curFrame, MediaEncode *encode, PktList *list) :
+VTask::VTask(QVideoFrame &curFrame, MediaEncode *encode, PktList *vlist) :
     _curFrame(curFrame),
     _encode(encode),
-    _list(list)
+    _vlist(vlist)
 {
     AVPixelFormat inFmt = _encode->_vArgs.in_pixFmt;
     AVPixelFormat outFmt = _encode->_vArgs.out_pixFmt;
     //CUR;
-#if 0
+#if 1
     if ((inFmt != AV_PIX_FMT_NV21) || (outFmt != AV_PIX_FMT_YUV420P)){
         qWarning()<<"QRunnable unsupported inFmt or outFmt";
-        exit(0);
+        getchar();
     }
 #endif
 }
@@ -25,7 +25,7 @@ VTask::~VTask()
 void VTask::run()
 {
     //CUR;
-    AVFrame *bgr24 = NULL;
+    //AVFrame *bgr24 = NULL;
     AVFrame *yuv420p= NULL;
     int ret;
     AVPixelFormat inFmt = _encode->_vArgs.in_pixFmt;
@@ -36,8 +36,8 @@ void VTask::run()
     int outH = _encode->_vArgs.outHeight;
     long long sysPts = _encode->_sysPts;
 
-    QThread *curTh = QThread::currentThread();
-    curTh->setStackSize(curTh->stackSize() * 2); // 线程栈大小放大2倍
+   // QThread *curTh = QThread::currentThread();
+    //curTh->setStackSize(curTh->stackSize() * 2); // 线程栈大小放大2倍
 
     //CUR;
 #if 0
@@ -72,7 +72,7 @@ void VTask::run()
 
     if ((inFmt != AV_PIX_FMT_NV21) || (outFmt != AV_PIX_FMT_YUV420P)){
         qWarning()<<"QRunnable unsupported inFmt or outFmt";
-        exit(0);
+        getchar();
     }
     /* 初始化格式转换上下文(Format_NV21->AV_PIX_FMT_YUV420P) */
     _swsNv21toYuv420p = sws_getCachedContext(_swsNv21toYuv420p, \
@@ -80,7 +80,7 @@ void VTask::run()
             outW, outH, outFmt, \
             SWS_FAST_BILINEAR, NULL, NULL, NULL);
 
-    ret = FFmOpr::allocFrame(&yuv420p, outW, outH, AV_PIX_FMT_YUV420P);
+    ret = FFmOpr::allocVFrame(&yuv420p, outW, outH, AV_PIX_FMT_YUV420P);
     if (!ret){
         qWarning()<<"allocFrame err";
         return;
@@ -109,5 +109,81 @@ void VTask::run()
         return;
     }
     FFmOpr::freeFrame(&yuv420p);
-    _list->pushBackPkt(pkt);
+    _vlist->pushBackPkt(pkt);
+}
+
+
+
+
+
+
+
+/////////////////////////////// 音频任务 ///////////////////////////////////////
+
+
+
+
+ATask::ATask(AudioFrame &aframe, MediaEncode *encode, PktList *alist) :
+    _audioFrame(aframe),
+    _encode(encode),
+    _alist(alist)
+{
+    AVSampleFormat sample_fmt = _encode->_aArgs.sample_fmt;
+    AVSampleFormat resample_fmt = _encode->_aArgs.resample_fmt;
+    if ((sample_fmt != AV_SAMPLE_FMT_S16) || (resample_fmt != AV_SAMPLE_FMT_FLTP)){
+        CUR;
+        qWarning()<<"unsupported sample_fmt or resample_fmt";
+        getchar();
+    }
+}
+
+ATask::~ATask()
+{
+
+}
+
+void ATask::run()
+{
+    AVFrame *fltp;
+    int ret;
+    int channels = _encode->_aArgs.channels;
+    int nb_samples = _encode->_aArgs.nb_samples;
+    int sysPts = _encode->_sysPts;
+    enum AVSampleFormat resample_fmt = _encode->_aArgs.resample_fmt;
+    SwrContext *swrS16toFltp = _encode->_swrS16toFltp;
+
+    if (!FFmOpr::allocAFrame(&fltp, channels, nb_samples, resample_fmt)) {
+        CUR;
+        qWarning()<<"ERR:allocAFrame ";
+        delete[] _audioFrame.data;
+        return;
+    }
+
+    _encode->swrMutex.lock();
+   // s16转fltp
+    ret = FFmOpr::S16toFltp(swrS16toFltp, &_audioFrame, fltp);
+    _encode->swrMutex.unlock();
+    //qInfo()<<"S16toFltp: ret="<<ret;
+    if (ret <=0){
+        qWarning()<<"ERR:S16toFltp ";
+        delete[] _audioFrame.data;
+        return;
+    }
+    AVPacket *pkt = av_packet_alloc();
+    if (!pkt) {
+        delete[] _audioFrame.data;
+        return;
+    }
+    av_init_packet(pkt);
+    pkt->pts = av_gettime() - sysPts;	// 包的时间戳(毫秒) = 当前时间-开始记录的时间
+    if (!(_encode->aEncode(fltp, pkt))) {
+        qWarning()<<"ERR: aEncode()";
+        FFmOpr::freePkt(&pkt);
+        delete[] _audioFrame.data;
+        FFmOpr::freeFrame(&fltp);
+        return;
+    }
+    _alist->pushBackPkt(pkt);
+    delete[] _audioFrame.data;
+    FFmOpr::freeFrame(&fltp);
 }

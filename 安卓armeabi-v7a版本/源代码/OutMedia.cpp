@@ -7,15 +7,15 @@ OutMedia::OutMedia(string outUrl, string streamFmt, MediaEncode *encode)
     this->streamFmt = streamFmt;
     if (0 > avformat_alloc_output_context2(&this->outFmtCtx, NULL, streamFmt.c_str(), outUrl.c_str())) {
         qWarning()<< "ERR: avformat_alloc_output_context2";
-        exit(0);
+        getchar();
     }
     // 推流延迟优化
-    //outFmtCtx->max_interleave_delta = 0;			// 交叉存取的最大延迟
-    //outFmtCtx->max_delay = 0;
+    outFmtCtx->max_interleave_delta = 0;			// 交叉存取的最大延迟
+    outFmtCtx->max_delay = 0;
 
     /* 增加音频流和视频流 */
-    //addStream(encode->aEncodeCtx);    // 增加音频流
-    addStream(encode->_vEncodeCtx); // 增加视频流
+    addStream(encode->_aEncodeCtx);    // 增加音频流
+    //addStream(encode->_vEncodeCtx); // 增加视频流
     CUR;
     //dump_outMediaFmt();
     write_headerInfo();
@@ -58,7 +58,7 @@ void OutMedia::write_headerInfo()
     if (avformat_write_header(this->outFmtCtx, NULL) < 0) {
         CUR;
         qWarning()<<"ERR: write_headerInfo";
-        exit(0);
+        getchar();
         return;
     }
 }
