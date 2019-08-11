@@ -9,7 +9,7 @@ minimumFrameRate:  30
 maximumFrameRate:  30   
 resolution:  176 x 144  
 ------------------------
-Format_YV12             
+Format_YV12                
 minimumFrameRate:  14   
 maximumFrameRate:  20   
 resolution:  176 x 144  
