@@ -18,6 +18,7 @@ QtVideoCap::QtVideoCap(QSize inSize, double fps, QVideoFrame::PixelFormat inFmt,
 
 void QtVideoCap::init() // 必须在主线程中调用
 {
+    CUR;
     /* 初始化相机 */
     useCameraInfo = QCameraInfo::defaultCamera();   // 使用默认的相机
     _camera = new QCamera(useCameraInfo);
@@ -26,10 +27,12 @@ void QtVideoCap::init() // 必须在主线程中调用
     _camera->setViewfinder(viewfinder);
     _probe = new QVideoProbe();
     _probe->setSource(_camera);
+    CUR;
     // 在newVideoFrame函数中捕获视频帧,  当相机成功加载后,在stateChanged函数中设置相机
     //connect(_probe, &QVideoProbe::videoFrameProbed, this, &QtVideoCap::newVideoFrame);
     connect(_camera, &QCamera::stateChanged, this, &QtVideoCap::stateChanged);
-    _camera->setCaptureMode(QCamera::CaptureVideo);
+
+    _camera->setCaptureMode(QCamera::CaptureVideo);   
     _camera->start();
 }
 

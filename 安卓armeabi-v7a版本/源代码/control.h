@@ -40,11 +40,11 @@ public:
     // 包缓存队列参数
     PktList *_aPktList;
     PktList *_vPktList;
-    unsigned int _aPktListSize = 10;
-    unsigned int _vPktListSize = 3;
+    unsigned int _aPktListSize = 1;
+    unsigned int _vPktListSize = 1;
 
     // 视频采集参数
-    QSize _inSize = {320,240};
+    QSize _inSize = {640,480};
     QSize _outSize = _inSize;
     AVPixelFormat _inFmt = AV_PIX_FMT_NV21;
     AVPixelFormat _outFmt = AV_PIX_FMT_YUV420P;
@@ -59,9 +59,9 @@ public:
     aEncodeArgs _aArgs;
 
     // 推流参数
-    OutMedia *outMedia;
-    string outUr = "rtmp://hdlcontrol.com/live/stream";
-    string streamFmt = "flv";
+    OutMedia *_outMedia;
+    string _outUr = "rtmp://hdlcontrol.com/live/stream";
+    string _muxerFmt = "flv";
     QThreadPool *_pool;
 
     // 显示采集视频

@@ -4,6 +4,7 @@
 #include <qtvideocap.h>
 #include <MediaEncode.h>
 #include <debug.h>
+#include <ffmopr.h>
 
 extern "C" {
     #include <libavformat/avformat.h>
@@ -20,12 +21,12 @@ using namespace std;
 class OutMedia
 {
 public:
-    OutMedia(string outUrl, string streamFmt, MediaEncode *encode);
+    OutMedia(string _outUrl, string _muxerFmt, MediaEncode *encode);
 	~OutMedia();
     //bool init(string outUrl, string streamFmt, MediaEncode *encode);
 	bool addStream(AVCodecContext *encodeCtx);
 	void dump_outMediaFmt();
-    void write_headerInfo();
+    bool write_headerInfo();
 	bool send_vPkt(AVPacket *pkt);
 	bool send_aPkt(AVPacket *pkt);
 
@@ -38,9 +39,9 @@ private:
 	//const char *outUrl = "rtmp://172.16.24.211/live";
 	//const char *outUrl = "rtmp://hdlcontrol.com/live/stream";
 	//const char *outUrl = "udp://172.16.24.169:2000";
-	string outUrl;
-	string streamFmt;	// flv, f4v, mpegts
-	AVFormatContext *outFmtCtx;
+    string _outUrl;
+    string _muxerFmt;	// flv, f4v, mpegts
+    AVFormatContext *_outFmtCtx;
 	AVRational sysTimebase = { 1,1000000 };	// 系统时间戳: 微妙, 来之MediaEncode.h
 
 

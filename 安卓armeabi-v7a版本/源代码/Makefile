@@ -61,7 +61,8 @@ SOURCES       = main.cpp \
 		pktlist.cpp \
 		control.cpp \
 		showvcap.cpp \
-		qtaudiorecord.cpp moc_MediaEncode.cpp \
+		qtaudiorecord.cpp \
+		frameList.cpp moc_MediaEncode.cpp \
 		moc_qtvideocap.cpp \
 		moc_control.cpp \
 		moc_showvcap.cpp \
@@ -76,6 +77,7 @@ OBJECTS       = main.obj \
 		control.obj \
 		showvcap.obj \
 		qtaudiorecord.obj \
+		frameList.obj \
 		moc_MediaEncode.obj \
 		moc_qtvideocap.obj \
 		moc_control.obj \
@@ -90,7 +92,8 @@ DIST          =  MediaEncode.h \
 		control.h \
 		debug.h \
 		showvcap.h \
-		qtaudiorecord.h main.cpp \
+		qtaudiorecord.h \
+		frameList.h main.cpp \
 		MediaEncode.cpp \
 		qtvideocap.cpp \
 		OutMedia.cpp \
@@ -99,7 +102,8 @@ DIST          =  MediaEncode.h \
 		pktlist.cpp \
 		control.cpp \
 		showvcap.cpp \
-		qtaudiorecord.cpp
+		qtaudiorecord.cpp \
+		frameList.cpp
 QMAKE_TARGET  = libAndroidPushStreamer.so
 DESTDIR       = 
 TARGET        = libAndroidPushStreamer.so
@@ -481,8 +485,8 @@ distdir: FORCE
 	@if not exist $(DISTDIR) mkdir $(DISTDIR) & if not exist $(DISTDIR) exit 1
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)\
 	$(COPY_FILE) --parents F:\install\QT\5.12.1_\5.12.1\android_armv7\mkspecs\features\data\dummy.cpp $(DISTDIR)\
-	$(COPY_FILE) --parents MediaEncode.h qtvideocap.h OutMedia.h ffmopr.h task.h pktlist.h control.h debug.h showvcap.h qtaudiorecord.h $(DISTDIR)\
-	$(COPY_FILE) --parents main.cpp MediaEncode.cpp qtvideocap.cpp OutMedia.cpp ffmopr.cpp task.cpp pktlist.cpp control.cpp showvcap.cpp qtaudiorecord.cpp $(DISTDIR)\
+	$(COPY_FILE) --parents MediaEncode.h qtvideocap.h OutMedia.h ffmopr.h task.h pktlist.h control.h debug.h showvcap.h qtaudiorecord.h frameList.h $(DISTDIR)\
+	$(COPY_FILE) --parents main.cpp MediaEncode.cpp qtvideocap.cpp OutMedia.cpp ffmopr.cpp task.cpp pktlist.cpp control.cpp showvcap.cpp qtaudiorecord.cpp frameList.cpp $(DISTDIR)\
 	$(COPY_FILE) --parents showvcap.ui $(DISTDIR)\
 
 
@@ -1880,7 +1884,20 @@ OutMedia.obj: OutMedia.cpp OutMedia.h \
 		..\..\include\libswscale\swscale.h \
 		..\..\include\libswresample\swresample.h \
 		..\..\include\libswresample\version.h \
-		..\..\include\libavutil\time.h
+		..\..\include\libavutil\time.h \
+		ffmopr.h \
+		qtaudiorecord.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtMultimedia\QAudioFormat \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtMultimedia\qaudioformat.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtMultimedia\QAudioDeviceInfo \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtMultimedia\qaudiodeviceinfo.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtMultimedia\qaudio.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtMultimedia\QAudioInput \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtMultimedia\qaudioinput.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\QIODevice \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\QThread \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qthread.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\QMetaType
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o OutMedia.obj OutMedia.cpp
 
 ffmopr.obj: ffmopr.cpp ffmopr.h \
@@ -2789,6 +2806,147 @@ qtaudiorecord.obj: qtaudiorecord.cpp qtaudiorecord.h \
 		..\..\include\libswresample\version.h \
 		..\..\include\libavutil\time.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qtaudiorecord.obj qtaudiorecord.cpp
+
+frameList.obj: frameList.cpp frameList.h \
+		..\..\include\libavformat\avformat.h \
+		..\..\include\libavcodec\avcodec.h \
+		..\..\include\libavutil\samplefmt.h \
+		..\..\include\libavutil\avutil.h \
+		..\..\include\libavutil\common.h \
+		..\..\include\libavutil\attributes.h \
+		..\..\include\libavutil\macros.h \
+		..\..\include\libavcodec\version.h \
+		..\..\include\libavutil\version.h \
+		..\..\include\libavutil\avconfig.h \
+		..\..\include\libavutil\mem.h \
+		..\..\include\libavutil\error.h \
+		..\..\include\libavutil\rational.h \
+		..\..\include\libavutil\mathematics.h \
+		..\..\include\libavutil\intfloat.h \
+		..\..\include\libavutil\log.h \
+		..\..\include\libavutil\pixfmt.h \
+		..\..\include\libavutil\buffer.h \
+		..\..\include\libavutil\cpu.h \
+		..\..\include\libavutil\channel_layout.h \
+		..\..\include\libavutil\dict.h \
+		..\..\include\libavutil\frame.h \
+		..\..\include\libavutil\hwcontext.h \
+		..\..\include\libavformat\avio.h \
+		..\..\include\libavformat\version.h \
+		..\..\include\libavcodec\mediacodec.h \
+		..\..\include\libavutil\opt.h \
+		..\..\include\libswscale\swscale.h \
+		..\..\include\libswresample\swresample.h \
+		..\..\include\libswresample\version.h \
+		..\..\include\libavutil\time.h \
+		ffmopr.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\QDebug \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qdebug.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qalgorithms.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qglobal.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qconfig-bootstrapped.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qconfig.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qtcore-config.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qsystemdetection.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qprocessordetection.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qcompilerdetection.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qtypeinfo.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qsysinfo.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qlogging.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qflags.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qatomic.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qbasicatomic.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qatomic_bootstrap.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qgenericatomic.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qatomic_cxx11.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qatomic_msvc.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qglobalstatic.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qmutex.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qnumeric.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qversiontagging.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qhash.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qchar.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qiterator.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qlist.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qrefcount.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qarraydata.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qhashfunctions.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qstring.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qbytearray.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qnamespace.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qstringliteral.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qstringalgorithms.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qstringview.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qstringbuilder.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qpair.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qbytearraylist.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qstringlist.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qregexp.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qstringmatcher.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qmap.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qtextstream.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qiodevice.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qobject.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qobjectdefs.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qobjectdefs_impl.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qcoreevent.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qscopedpointer.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qmetatype.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qvarlengtharray.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qcontainerfwd.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qobject_impl.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qlocale.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qvariant.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qshareddata.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qvector.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qpoint.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qset.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qcontiguouscache.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qsharedpointer.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qsharedpointer_impl.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtMultimedia\QVideoFrame \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtMultimedia\qvideoframe.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtGui\qimage.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtGui\qtguiglobal.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtGui\qtgui-config.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtGui\qcolor.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtGui\qrgb.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtGui\qrgba64.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtGui\qpaintdevice.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtGui\qwindowdefs.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtGui\qwindowdefs_win.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qrect.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qmargins.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qsize.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtGui\qpixelformat.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtGui\qtransform.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtGui\qmatrix.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtGui\qpolygon.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtGui\qregion.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qdatastream.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qline.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtGui\qpainterpath.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtMultimedia\qabstractvideobuffer.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtMultimedia\qtmultimediaglobal.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtMultimedia\qtmultimedia-config.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtMultimedia\qmultimedia.h \
+		debug.h \
+		qtaudiorecord.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\QObject \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtMultimedia\QAudioFormat \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtMultimedia\qaudioformat.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtMultimedia\QAudioDeviceInfo \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtMultimedia\qaudiodeviceinfo.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtMultimedia\qaudio.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtMultimedia\QAudioInput \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtMultimedia\qaudioinput.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\QIODevice \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\QThread \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\qthread.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\QMetaType \
+		MediaEncode.h \
+		F:\install\QT\5.12.1_\5.12.1\android_armv7\include\QtCore\QMutex
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o frameList.obj frameList.cpp
 
 moc_MediaEncode.obj: moc_MediaEncode.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_MediaEncode.obj moc_MediaEncode.cpp

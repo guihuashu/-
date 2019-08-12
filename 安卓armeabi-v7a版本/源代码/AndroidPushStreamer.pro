@@ -63,7 +63,8 @@ HEADERS += \
     control.h \
     debug.h \
     showvcap.h \
-    qtaudiorecord.h
+    qtaudiorecord.h \
+    frameList.h
 
 SOURCES += \
     main.cpp \
@@ -75,7 +76,8 @@ SOURCES += \
     pktlist.cpp \
     control.cpp \
     showvcap.cpp \
-    qtaudiorecord.cpp
+    qtaudiorecord.cpp \
+    frameList.cpp
 
 
 FORMS += \

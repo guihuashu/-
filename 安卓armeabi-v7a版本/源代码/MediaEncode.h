@@ -63,13 +63,6 @@ public:
     bool init_vEncode();
     bool init_aEncode();
 
-    //void set_vCodeArg(enum vEncodeArgType type, int64_t val);
-    //bool init_vEncode();
-    //bool init_aEncode();
-    //bool init_avEncode();
-    //AVFrame *brg24ToYuv420p(cv::Mat *inMat);
-    //AVFrame *fmtS16_to_fmtFltp(char *inData);
-
     bool aEncode(AVFrame *inFrame, AVPacket *aPkt);
     bool vEncode(AVFrame *inFrame, AVPacket *vPkt);
 
@@ -78,40 +71,19 @@ public:
 	// 视频相关变量
     AVCodecContext *_vEncodeCtx = NULL;
     AVCodecContext *_aEncodeCtx = NULL;
-    QMutex vMutex;
-    QMutex _aEncodeCtxMutex;
+    QMutex _vEncodeMutex;
+    QMutex _aEncodeMutex;
 
     vEncodeArgs _vArgs;
     aEncodeArgs _aArgs;
     SwrContext *_swrS16toFltp = NULL;
-    QMutex swrMutex;
-
-//	// 音频相关变量
-//	int sampleRate = 44100;	 // 采样率 44100
-//	int channels = 2;
-//	int aBit_rate = 20 * 1024 * 8;	// 音频编解码码率
-//	int nb_samples = 1024;	// 一个通道一帧的样本数量
-//	int aFrameBufSize = 1024 * 2 * 2;	// 两个通道, 每个样本4096字节(参考AudioRecord.h)
+    SwsContext *_swsNv21toYuv420p = NULL;
+    QMutex _swrMutex;
+    QMutex _swsMutex;
 
     long long _sysPts;			// 系统时间戳, 微妙
     AVRational _sysTimebase;		// 系统时间基数, 1/1000000, 微妙
 
-    //unsigned int _aListSize = 3;
-   // unsigned int _vListSize = 10;
-    //std::list<AVPacket *> _aPktList;
-    //std::list<AVPacket *> _vPktList;
-    //std::mutex _aList_mutex;
-    //std::mutex _vList_mutex;
-
-	// 获取包装好的音频包
-    //AVPacket *gain_aPkt();
-    //AVPacket *gain_vPkt();
-
-    //
-
-	//void make_aPkt();
-	//void make_vPkt();
-private:
 };  // MediaEncode
 
 

@@ -3,8 +3,8 @@
 
 void FFmOpr::initFFM()
 {
-    avcodec_register_all();
-    av_register_all();
+    //avcodec_register_all();
+    //av_register_all();
     avformat_network_init();
     qInfo()<<avformat_configuration();
 }
@@ -53,7 +53,7 @@ bool FFmOpr::allocAFrame(AVFrame **frame, int channels, int nb_samples, AVSample
     (*frame)->channels = channels;
     (*frame)->channel_layout = av_get_default_channel_layout(channels);
     (*frame)->nb_samples = nb_samples;
-    (*frame)->pts = 0;
+    //(*frame)->pts = 0;
     if (av_frame_get_buffer((*frame), 0))	{
         av_frame_free(frame);
         //CUR;

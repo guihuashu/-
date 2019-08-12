@@ -32,26 +32,22 @@ class VTask : public QRunnable
 public:
     VTask(QVideoFrame &curFrame, MediaEncode *encode, PktList *vlist);
     ~VTask();
-    virtual void run();
+    void run();
 
 private:
     QVideoFrame _curFrame;
     MediaEncode *_encode;
-    SwsContext *_swsNv21toYuv420p = NULL;
-    //SwsContext *_swsNv21toBgr24 = NULL;
-    //SwsContext *_swsBrg24toYuv420p = NULL;
-
     PktList *_vlist;
 };
 
-class ATask : public QRunnable
+class ATask //: public QRunnable
 {
 public:
     ATask(AudioFrame &aframe,  MediaEncode *encode, PktList *alist);
     ~ATask();
-    virtual void run();
+    void run();
 private:
-    AudioFrame _audioFrame;
+    AudioFrame *_audioFrame;
     MediaEncode *_encode;
     PktList *_alist;
 };
