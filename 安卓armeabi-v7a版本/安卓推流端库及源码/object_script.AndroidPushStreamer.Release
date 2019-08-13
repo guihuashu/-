@@ -1,0 +1,16 @@
+release/main.o
+release/MediaEncode.o
+release/qtvideocap.o
+release/OutMedia.o
+release/ffmopr.o
+release/task.o
+release/pktlist.o
+release/control.o
+release/showvcap.o
+release/qtaudiorecord.o
+release/frameList.o
+release/moc_MediaEncode.o
+release/moc_qtvideocap.o
+release/moc_control.o
+release/moc_showvcap.o
+release/moc_qtaudiorecord.o

@@ -1,0 +1,43 @@
+{
+    "logs": [
+        {
+            "outputFile": "D:\\VST___\\src\\AndroidPushStreamer\\android-build\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
+            "map": [
+                {
+                    "source": "D:\\VST___\\src\\AndroidPushStreamer\\android-build\\res\\values\\libs.xml",
+                    "from": {
+                        "startLines": "-1,-1,9,-1,-1",
+                        "startColumns": "-1,-1,4,-1,-1",
+                        "startOffsets": "-1,-1,300,-1,-1",
+                        "endLines": "-1,-1,19,-1,-1",
+                        "endColumns": "-1,-1,12,-1,-1",
+                        "endOffsets": "-1,-1,525,-1,-1"
+                    },
+                    "to": {
+                        "startLines": "2,5,22,33,44",
+                        "startColumns": "4,4,4,4,4",
+                        "startOffsets": "55,114,1402,1630,1878",
+                        "endLines": "4,21,32,43,46",
+                        "endColumns": "12,12,12,13,12",
+                        "endOffsets": "109,1397,1625,1873,1988"
+                    }
+                },
+                {
+                    "source": "F:\\install\\QT\\5.12.1_\\5.12.1\\android_armv7\\src\\android\\java\\res\\values\\strings.xml",
+                    "from": {
+                        "startLines": "-1,-1,-1,-1",
+                        "startColumns": "-1,-1,-1,-1",
+                        "startOffsets": "-1,-1,-1,-1"
+                    },
+                    "to": {
+                        "startLines": "47,48,49,50",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "1993,2101,2223,2335",
+                        "endColumns": "107,121,111,84",
+                        "endOffsets": "2096,2218,2330,2415"
+                    }
+                }
+            ]
+        }
+    ]
+}
