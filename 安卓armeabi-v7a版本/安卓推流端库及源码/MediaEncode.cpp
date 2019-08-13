@@ -51,7 +51,7 @@ bool MediaEncode::init_vEncode()
 
     CUR;
     // 设置太快,编码器吃不消, 会有马赛克
-    av_opt_set(_vEncodeCtx->priv_data, "preset ", "ultrafast ", 0); //设置priv_data的option
+    av_opt_set(_vEncodeCtx->priv_data, "preset", "ultrafast", 0); //设置priv_data的option
     av_opt_set(_vEncodeCtx->priv_data, "tune", "zerolatency", 0); //设置priv_data的option
     av_opt_set(_vEncodeCtx->priv_data, "x264opts", _vArgs.CRF.c_str(), 0);  // crf:0-51, 0表示不压缩, 51表示最高压缩比
     if (avcodec_open2(_vEncodeCtx, NULL, NULL))	{       // 打开编码器(编码器开始待解码)

@@ -5,14 +5,15 @@ OutMedia::OutMedia(string outUrl, string streamFmt, MediaEncode *encode)
     qInfo() << "------------------  OutMedia  ------------------";
     this->_outUrl = outUrl;
     this->_muxerFmt = streamFmt;
+
     if (0 > avformat_alloc_output_context2(&_outFmtCtx, NULL, "flv", "rtmp://hdlcontrol.com/live/stream")) {
         qWarning()<< "ERR: avformat_alloc_output_context2";
         getchar();
     }
 #if 0   // 这个不能设置, 否则丢失音频流
     _outFmtCtx->max_interleave_delta = 0;			// 交叉存取的最大延迟
-    _outFmtCtx->max_delay = 0;
 #endif
+    _outFmtCtx->max_delay = 0;
     /* 增加音频流和视频流 */
     if (!addStream(encode->_vEncodeCtx)) {// 增加视频流
         qWarning()<<"ERR: add video Stream";
@@ -22,6 +23,7 @@ OutMedia::OutMedia(string outUrl, string streamFmt, MediaEncode *encode)
         qWarning()<<"ERR: add audio Stream";
         getchar();
     }
+
     CUR;
     dump_outMediaFmt();
     if (!write_headerInfo()) {

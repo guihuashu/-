@@ -23,9 +23,9 @@ void Control::setVargs()
     // 视频编码器参数
     memset(&_vArgs, 0, sizeof(_vArgs));
     _vArgs.thread_count = 8;		// 用于编码的线程数, 系统所有线程数
-    _vArgs.bit_rate = 1 * 1024 * 8;			// 码率, 越大视频越清晰
+    _vArgs.bit_rate = 20 * 1024 * 8;			// 码率, 越大视频越清晰
     _vArgs.gop_size = 50;						// 关键帧周期
-    _vArgs.fps = 14;
+    _vArgs.fps = 30;
     _vArgs.max_b_frames = 0;					// 最大b帧数, 有b帧就会有延迟
     _vArgs.inWidth = _inSize.width();
     _vArgs.inHeight = _inSize.height();
@@ -44,7 +44,7 @@ void Control::setAargs()
     _aArgs.sample_fmt = AV_SAMPLE_FMT_S16;      // 采样格式, signed 16 bits
     _aArgs.resample_fmt = AV_SAMPLE_FMT_FLTP;   // 重采样格式
     _aArgs.thread_count = 6;					// 用于编码的线程数
-    _aArgs.bit_rate = 1 * 1024 * 8;            // 码率, 越大声音越清晰
+    _aArgs.bit_rate = 20 * 1024 * 8;            // 码率, 越大声音越清晰
     _aArgs.nb_samples = 1024;
     if (_aArgs.sample_fmt != AV_SAMPLE_FMT_S16) {
         CUR;
@@ -118,16 +118,19 @@ static void workPushStream(PktList *aPktList, PktList *vPktList, OutMedia *outMe
     {
         //CUR;
         AVPacket *aPkt, *vPkt;
-        if (aPktList->size() == aPktList->_listSize)
+        //if (aPktList->size() == aPktList->_listSize)
             aPkt = aPktList->fontPkt();
-        else {
-            aPkt = NULL;
-        }
-        if (vPktList->size() == vPktList->_listSize)
+//        else {
+//            aPkt = NULL;
+//        }
+        //if (vPktList->size() == vPktList->_listSize)
             vPkt = vPktList->fontPkt();
-        else {
-            vPkt = NULL;
-        }
+       // else {
+        //    vPkt = NULL;
+        //}
+        //if (!aPkt && !vPkt) {
+           // av_usleep(1);
+        //}
         if (aPkt) {
             outMedia->send_aPkt(aPkt);
             //av_usleep(10);
@@ -136,7 +139,6 @@ static void workPushStream(PktList *aPktList, PktList *vPktList, OutMedia *outMe
             outMedia->send_vPkt(vPkt);
             //av_usleep(1000);    // 最好不要让包中有缓存
         }
-        av_usleep(50);
     }
 }
 
