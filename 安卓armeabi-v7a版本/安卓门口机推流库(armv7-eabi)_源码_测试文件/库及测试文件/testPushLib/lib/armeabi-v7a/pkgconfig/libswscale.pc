@@ -1,0 +1,14 @@
+prefix=/work/system/ffmpeg/ffmpeg-4.1/arm7-a
+exec_prefix=${prefix}
+libdir=/work/system/ffmpeg/ffmpeg-4.1/arm7-a/lib
+includedir=/work/system/ffmpeg/ffmpeg-4.1/arm7-a/include
+
+Name: libswscale
+Description: FFmpeg image rescaling library
+Version: 5.3.100
+Requires: 
+Requires.private: libavutil >= 56.22.100
+Conflicts:
+Libs: -L${libdir}  -lswscale 
+Libs.private: -lm
+Cflags: -I${includedir}
